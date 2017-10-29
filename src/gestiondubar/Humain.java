@@ -13,7 +13,7 @@ public abstract class Humain {
     private final String prenom;
     private final String surnom;
     protected float porte_monnaie;
-    private int cote_popularite = 10;
+    protected int cote_popularite = 10;
     protected String crie;
     
     // Constructeur
@@ -38,19 +38,27 @@ public abstract class Humain {
         System.out.println(this.prenom + ": " + phrase);
     }
     
+    public void parler(String phrase, Humain humain){
+        System.out.println(this.prenom + ": " + phrase + " " + humain.prenom);
+    }
+    
     public void se_Presenter(){
-        parler(this.crie + "!!! " +"Je m'appelle " + this.prenom + " mais on m'appelle souvent " + this.surnom);
+        parler(this.crie + "!!! " +"Je m'appelle " + this.prenom + " mais on m'appelle souvent " + this.surnom + " il me reste encore " + this.porte_monnaie + "€.");
+        parler("Petit secret entre nous, j'ai une popularité de " + this.cote_popularite);
     }
     
-    public void paye(double prix){
-        this.porte_monnaie-=prix;
+    protected void paye(Boisson boisson){
+        this.porte_monnaie-=boisson.prix_vente;
     }
     
-    public void boire(double prix_boisson){
-        paye(prix_boisson);
+    protected void boire(Boisson boisson){
+        parler("Hum GluGluGlu je viens de finir " + boisson.name);
     }
     
-    public void offrir_Verre(Humain camarade, double prix_boisson){
-        paye(prix_boisson);
+    public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
+        this.cote_popularite+=5;
+    }
+    public void offrir_Verre (Barman barman, Boisson boisson){
+        this.cote_popularite+=10;
     }
 }
