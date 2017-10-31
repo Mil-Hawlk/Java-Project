@@ -9,19 +9,23 @@ package gestiondubar;
  *
  * @author pierr
  */
-public class Sexe {
+public class Sexe_Client {
     
+        
     String sexe;
     Object attribut;
     
-    public Sexe(Object attribut){
-        if(attribut.getClass() == TShirt.class){
+    public Sexe_Client(Object pattribut){
+        if(pattribut.getClass() == TShirt.class){
             this.sexe= "Homme";
+            this.attribut=pattribut;
         }        
         else{
-            if(attribut.getClass() == Bijoux.class){
+            if(pattribut.getClass() == Bijoux.class){
                 this.sexe = "Femme";
+                this.attribut=pattribut;
             }
         } // sinon exeption à faire
     }
+    
 }

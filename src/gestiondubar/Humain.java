@@ -44,7 +44,6 @@ public abstract class Humain {
     
     public void se_Presenter(){
         parler(this.crie + "!!! " +"Je m'appelle " + this.prenom + " mais on m'appelle souvent " + this.surnom + " il me reste encore " + this.porte_monnaie + "€.");
-        parler("Petit secret entre nous, j'ai une popularité de " + this.cote_popularite);
     }
     
     protected void paye(Boisson boisson){
@@ -58,7 +57,16 @@ public abstract class Humain {
     public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
         this.cote_popularite+=5;
     }
+    
+    public void offrir_Verre(Humain camarade, Boisson boisson,Serveur serveur){
+        this.cote_popularite+=5;
+    }
+    
     public void offrir_Verre (Barman barman, Boisson boisson){
+        this.cote_popularite+=10;
+    }
+    
+    public void offrir_Verre (Serveur serveur, Boisson boisson){
         this.cote_popularite+=10;
     }
 }
