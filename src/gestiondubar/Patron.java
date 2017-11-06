@@ -22,6 +22,7 @@ public class Patron extends Client {
         if(this.porte_monnaie>=pprixCommande)
         {
             parler("Voilà ton argent "+pnomFournisseur.nomFournisseur);
+            this.porte_monnaie-=pprixCommande;
             pnomFournisseur.livrerCommande(bar);
         }
         else
@@ -29,7 +30,8 @@ public class Patron extends Client {
             parler("Je n'ai pas assez d'argent pour payer le fournisseur, je pique dans la caisse");
             if(this.porte_monnaie+bar.barman.obtenir_caisse()-100<pprixCommande)//100€ de marge
             {
-                bar.barman.vider_caisse();
+                bar.barman.vider_caisse_pour_commande();
+                this.porte_monnaie-=pprixCommande;
                 pnomFournisseur.livrerCommande(bar);
             }
             else

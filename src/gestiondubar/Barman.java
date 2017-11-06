@@ -10,7 +10,7 @@ package gestiondubar;
  * @author pierr
  */
 public class Barman extends Humain{
-    private int caisse = 1000;
+    private int caisse = 80;
     private Patron patron;
     
     /* Accesseur*/
@@ -31,7 +31,7 @@ public class Barman extends Humain{
     
     public void passerCommande(Boisson pboisson, int pquantite, Fournisseur pnomFournisseur, Bar pnomBar)
     {
-        parler("Salut mon cher "+pnomFournisseur+", Je voudrais te commander "+pquantite+pboisson+" pour le bar "+pnomBar+" , merci !");
+        parler("Salut mon cher "+pnomFournisseur.nomFournisseur+", Je voudrais te commander "+pquantite+pboisson.name+" pour le bar "+pnomBar.name+" , merci !");
         pnomFournisseur.recevoirCommandeEtFacturer(pboisson,pquantite,pnomBar);
     }
     
@@ -92,7 +92,18 @@ public class Barman extends Humain{
         }
     }
     
+    /*A chaque tour, le barman vérifie le trop plein de la caisse*/
     protected void vider_caisse(){
+        if(this.caisse>3000){
+            parler("Voici une partie de la caisse patron ", this.patron);
+            this.patron.porte_monnaie+=(this.caisse)-100;
+            this.caisse=(this.caisse)-100;
+            this.patron.recuperer_Caisse(this);
+        }
+    }
+    
+    protected void vider_caisse_pour_commande()
+    {
         if(this.caisse>100){
             parler("Voici une partie de la caisse patron ", this.patron);
             this.patron.porte_monnaie+=(this.caisse)-100;

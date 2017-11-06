@@ -34,6 +34,7 @@ public class Fournisseur extends Humain{
         this.nomBoissonCommande = pboisson;
         this.quantiteCommande = pquantite;
         double prixAPayer = pquantite * pboisson.prix_achat;
+        parler("Il y en aura pour "+prixAPayer+"euros !");
         pnomBar.patron.payerCommande(prixAPayer,this,pnomBar);
     }
     
