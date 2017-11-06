@@ -137,6 +137,8 @@ public class GestionDuBar {
             System.out.print("Le niveau d'alcolémie de philippine est de : ");
             System.out.println(Philippine.niveau_alcool);
         }
+        System.out.println("Philippine est tombée par terre, complètement raide");
+        System.out.println("Philippine part aux urgences pour un lavage d'estomac");
     }
     
 }
