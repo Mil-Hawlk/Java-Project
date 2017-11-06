@@ -14,8 +14,8 @@ public class Barman extends Humain{
     private Patron patron;
     
     /* Accesseur*/
-    public void obtenir_caisse(){
-        System.out.println(this.caisse);
+    public int obtenir_caisse(){
+        return this.caisse;
     }
     
     public Barman(String cprenom, String csurnom, float cporte_monnaie, String ccrie, Patron ppatron){
@@ -93,10 +93,10 @@ public class Barman extends Humain{
     }
     
     protected void vider_caisse(){
-        if(this.caisse>10000){
+        if(this.caisse>100){
             parler("Voici une partie de la caisse patron ", this.patron);
-            this.patron.porte_monnaie+=this.caisse/3;
-            this.caisse=this.caisse/3;
+            this.patron.porte_monnaie+=(this.caisse)-100;
+            this.caisse=(this.caisse)-100;
             this.patron.recuperer_Caisse(this);
         }
     }

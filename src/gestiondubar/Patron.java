@@ -11,11 +11,33 @@ package gestiondubar;
  */
 public class Patron extends Client {
     
-    
     public Patron(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut)
     {
         /*Catch l'exeption si attribut ne fais pas partie de l'énumération pour les femmes*/
         super(cprenom,csurnom,cporte_monnaie,ccrie,pboisson_favorite,pboisson_secours,attribut);
+    }
+    
+    public void payerCommande(double pprixCommande, Fournisseur pnomFournisseur,Bar bar)
+    {
+        if(this.porte_monnaie>=pprixCommande)
+        {
+            parler("Voilà ton argent "+pnomFournisseur.nomFournisseur);
+            pnomFournisseur.livrerCommande(bar);
+        }
+        else
+        {
+            parler("Je n'ai pas assez d'argent pour payer le fournisseur, je pique dans la caisse");
+            if(this.porte_monnaie+bar.barman.obtenir_caisse()-100<pprixCommande)//100€ de marge
+            {
+                bar.barman.vider_caisse();
+                pnomFournisseur.livrerCommande(bar);
+            }
+            else
+            {
+                parler("Je ne peux pas payer le fournisseur avec la caisse, j'annule la commande");
+                pnomFournisseur.annulerCommande();
+            }
+        }
     }
     
     @Override
