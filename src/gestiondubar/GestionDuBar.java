@@ -129,6 +129,44 @@ public class GestionDuBar {
         System.out.println(philippine.porte_monnaie);
         System.out.println(david.cote_popularite);
         System.out.println();
+        /*La patronne offre un verre à David en demandant au serveur*/
+        System.out.println();
+        anthony.obtenir_caisse();
+        System.out.println(david.niveau_alcool);
+        System.out.println(david.porte_monnaie);
+        System.out.println(philippine.niveau_alcool);
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(david.cote_popularite);
+        philippine.offrir_Verre(david, vodka, luc);
+        anthony.obtenir_caisse();
+        System.out.println(david.niveau_alcool);
+        System.out.println(david.porte_monnaie);
+        System.out.println(philippine.niveau_alcool);
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(david.cote_popularite);
+        System.out.println();
+        /*La patronne offre un verre à David en demandant au Barman*/
+        System.out.println();
+        anthony.obtenir_caisse();
+        System.out.println(david.niveau_alcool);
+        System.out.println(david.porte_monnaie);
+        System.out.println(philippine.niveau_alcool);
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(david.cote_popularite);
+        philippine.offrir_Verre(david, vodka, anthony);
+        anthony.obtenir_caisse();
+        System.out.println(david.niveau_alcool);
+        System.out.println(david.porte_monnaie);
+        System.out.println(philippine.niveau_alcool);
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(david.cote_popularite);
+        System.out.println();
+        /*La patronne empeche David de boire car il a trop bu */
+        System.out.println(david.est_bourre);
+        philippine.ordonner(david);
+        System.out.println(david.est_bourre);
+        david.commander(vodka, anthony);
+        david.commander(vodka, valentine);
         
     }
     

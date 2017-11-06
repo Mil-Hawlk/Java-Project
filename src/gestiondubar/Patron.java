@@ -47,6 +47,13 @@ public class Patron extends Client {
     }
     
     @Override
+    public void offrir_Verre(Humain camarade, Boisson boisson, Serveur serveur){
+        this.parler("J'aimerai commander " + boisson.name, serveur.barman);
+        serveur.barman.servir_Boisson(boisson,this);
+        camarade.boire(boisson); 
+    }
+    
+    @Override
     public void commander(Boisson boisson, Barman barman){
         this.parler("J'aimerai commander " + boisson.name, barman);
         barman.servir_Boisson(boisson,this);
@@ -60,19 +67,15 @@ public class Patron extends Client {
         this.boire(boisson);
     }
     
-    public void ordonner(Serveur serveur, Client client){
-        this.parler("Tu ne dois plus servir",serveur);
-        client.est_bourre = true;
-    }
-    
     public void exclure(Client client){
         client.est_vire=true;
     }
     
-    public void ordonner(Barman barman, Client client){
-        this.parler("Tu ne dois plus servir",barman);
+    public void ordonner(Client client){
+        this.parler("Vous ne devez plus servir " + client.obtenir_Prenom());
         client.est_bourre = true;
     }
+
     
     /* Ne pas oublier qu'elle peut exclure quelqu'un*/
 }

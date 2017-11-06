@@ -16,7 +16,7 @@ public class Client extends Humain {
     protected int niveau_alcool = 0;
     protected Sexe_Client sexe;
     protected boolean est_bourre = false;
-    protected boolean est_vire = false;
+    protected boolean est_vire = false; 
     
     public Client(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut){
         super(cprenom,csurnom,cporte_monnaie,ccrie);
@@ -27,7 +27,6 @@ public class Client extends Humain {
     }   
    
     public void se_Faire_Offrir_un_Verre(Humain amis, Barman barman){
-
     } // tu te fais offrir ta boisson favorite ou celle de secour ou bien tu ne prends rien
       
     public void changer_Sexe(Object  new_attribut){
@@ -44,21 +43,19 @@ public class Client extends Humain {
     protected void boire(Boisson boisson){
         super.boire(boisson);
         this.niveau_alcool+=boisson.degre_alcool;
-        if(this.niveau_alcool>20){
-            this.est_bourre=true;
-        }
     }
     
     public void parler(String phrase, Serveur serveur){
         if(this.niveau_alcool>45 ){
                 if(this.sexe.sexe == "Homme" && serveur.sexe.sexe=="Femme")
                 {
-                    System.out.print("Client ");
                     super.parler(phrase + " Poupée");}
                 else{
                     if(this.sexe.sexe == "Femme" && serveur.sexe.sexe=="Homme"){
-                        System.out.print("Client ");
                         super.parler(phrase+" Bo gosse");
+                    }
+                    else{
+                        super.parler(phrase);
                     }
                 }
             }
@@ -89,7 +86,7 @@ public class Client extends Humain {
     }
     
     public void commander(Boisson boisson, Barman barman){
-        this.parler("J'aimerai commander " + boisson.name + " "+ barman.obtenir_Prenom(), barman);
+        this.parler("J'aimerai commander " + boisson.name , barman);
         if(this.est_bourre == true){
             barman.parler("Désolé je ne peux plus te servir",this);
         }
@@ -104,9 +101,14 @@ public class Client extends Humain {
         /* Si les clients sont de sexes opposés et que le coeficient de charmes est supérieur à 8 il leur paie un verre*/
         /* Si les clients sont de meme sexe et que leur coefficietn est superieur a 8 il ne commande pas s'ils leur coefficient de popularite est inferieur a leur degre alcool*/
         this.parler("J'aimerai commander " + boisson.name + " " + serveur.obtenir_Prenom(),serveur);
-        this.paye(boisson);
-        serveur.commander(this,boisson);  
-        this.boire(boisson);
+        if(this.est_bourre == true){
+            serveur.parler("Désolé je ne peux plus te servir", this);
+        }
+        else{
+            this.paye(boisson);
+            serveur.commander(this,boisson);  
+            this.boire(boisson);
+        }
     }
 }
 
