@@ -29,6 +29,8 @@ public class GestionDuBar {
         /*Faire essai si le patron est un homme*/
         /* Définir le barman*/
         Barman anthony = new Barman("anthony","El Barman",10,"HoHoHo",philippine);
+        /*Définir le fournisseur*/
+        Fournisseur plouvier = new Fournisseur("Plouvier","Plouplou",50,"YAAAAAAAAJAJAJJAA");
         /* Définir les serveurs*/
         Sexe_Serveur sexeLuc = new Sexe_Serveur(true);
         Serveur luc = new Serveur("luc","Handicarpar",20,"Oh punaise",sexeLuc,anthony); /* Serveur garçon*/
@@ -41,35 +43,36 @@ public class GestionDuBar {
         Bar mon_Bar = new Bar(boisson,serveur,philippine,anthony);
         /* On définit un nouveau client*/
         Client david = new Client("david","Brakmar", 20 , "Youhou",cuvee,delirium,TShirt.jaune);
+        Client corentin = new Client("corentin","coco_l_abricot", 20 , "Gnegnegne",cuvee,delirium,valentine);
         /*david prend un verre à serveur pierre */
         System.out.println();
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         david.commander(cuvee, pierre);
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println();
         /*david prend un verre au barman anthony*/
         System.out.println();
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         david.commander(vodka, anthony);
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println();
         /*philippine prend un verre au barman anthony*/
         System.out.println();
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         philippine.commander(vodka, anthony);
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println();
         
         /* david a un taux d'alcoolémie énorme donc il va parler chelou au serveur*/
@@ -79,7 +82,7 @@ public class GestionDuBar {
         david.commander(karmeliete, valentine);
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println();
         /* david change de sexe */
         System.out.println(david.sexe.sexe);
@@ -95,18 +98,18 @@ public class GestionDuBar {
         david.commander(karmeliete, luc);
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println();
         /*david offre un verre à la patronne (qui est un client) en demandant au barman*/
         System.out.println();
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
         System.out.println(david.cote_popularite);
         david.offrir_Verre(philippine, vodka, anthony);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
@@ -115,14 +118,14 @@ public class GestionDuBar {
         System.out.println();
         /*david offre un verre à la patronne mais en demandant au serveur*/
         System.out.println();
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
         System.out.println(david.cote_popularite);
         david.offrir_Verre(philippine, vodka, luc);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
@@ -131,14 +134,14 @@ public class GestionDuBar {
         System.out.println();
         /*La patronne offre un verre à David en demandant au serveur*/
         System.out.println();
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
         System.out.println(david.cote_popularite);
         philippine.offrir_Verre(david, vodka, luc);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
@@ -147,14 +150,14 @@ public class GestionDuBar {
         System.out.println();
         /*La patronne offre un verre à David en demandant au Barman*/
         System.out.println();
-        anthony.obtenir_caisse();
+       System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
         System.out.println(philippine.porte_monnaie);
         System.out.println(david.cote_popularite);
         philippine.offrir_Verre(david, vodka, anthony);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(david.niveau_alcool);
         System.out.println(david.porte_monnaie);
         System.out.println(philippine.niveau_alcool);
@@ -171,15 +174,27 @@ public class GestionDuBar {
         /*Le barman boit du Coca*/
         System.out.println();
         System.out.println(anthony.porte_monnaie);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         anthony.boire(coca);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(anthony.porte_monnaie);
         System.out.println();
         /*Le barman boit une boisson alcoolisé*/
         anthony.boire(vodka);
-        anthony.obtenir_caisse();
+        System.out.println(anthony.obtenir_caisse());
         System.out.println(anthony.porte_monnaie);
+        System.out.println();
+        /*On va commander 20 karmeliete*/
+        System.out.println();
+        System.out.println(anthony.obtenir_caisse());
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(karmeliete.nombre);
+        System.out.println(plouvier.porte_monnaie);
+        anthony.passerCommande(karmeliete, 20 ,plouvier, mon_Bar);
+        System.out.println(anthony.obtenir_caisse());
+        System.out.println(philippine.porte_monnaie);
+        System.out.println(karmeliete.nombre);
+        System.out.println(plouvier.porte_monnaie);
         System.out.println();
     }
     

@@ -20,17 +20,37 @@ public class Client extends Humain {
     
     public Client(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut){
         super(cprenom,csurnom,cporte_monnaie,ccrie);
-        this.boisson_favorite=pboisson_favorite;
-        this.boisson_secours=pboisson_secours;
-        this.sexe= new Sexe_Client(attribut);
-        this.se_Presenter();
+        try{
+            if(attribut.getClass()!= TShirt.class && attribut.getClass()!=Bijoux.class ){
+                throw new Exception("Ceci n'est ni un homme ni une femme");
+            }
+            else{
+                this.boisson_favorite=pboisson_favorite;
+                this.boisson_secours=pboisson_secours;
+                this.sexe= new Sexe_Client(attribut);
+                this.se_Presenter();
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }   
    
     public void se_Faire_Offrir_un_Verre(Humain amis, Barman barman){
     } // tu te fais offrir ta boisson favorite ou celle de secour ou bien tu ne prends rien
       
     public void changer_Sexe(Object  new_attribut){
-        this.sexe = new Sexe_Client(new_attribut);
+        try{
+            if(new_attribut.getClass()!= TShirt.class && new_attribut.getClass()!=Bijoux.class ){
+                throw new Exception("Il ne peut pas changer de sexe mauvais attribut");
+            }
+            else{
+                this.sexe = new Sexe_Client(new_attribut);  
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
     @Override
@@ -109,6 +129,7 @@ public class Client extends Humain {
             serveur.commander(this,boisson);  
             this.boire(boisson);
         }
+        
     }
 }
 
