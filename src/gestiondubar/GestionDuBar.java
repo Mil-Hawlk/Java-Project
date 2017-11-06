@@ -167,7 +167,20 @@ public class GestionDuBar {
         System.out.println(david.est_bourre);
         david.commander(vodka, anthony);
         david.commander(vodka, valentine);
-        
+        System.out.println();
+        /*Le barman boit du Coca*/
+        System.out.println();
+        System.out.println(anthony.porte_monnaie);
+        anthony.obtenir_caisse();
+        anthony.boire(coca);
+        anthony.obtenir_caisse();
+        System.out.println(anthony.porte_monnaie);
+        System.out.println();
+        /*Le barman boit une boisson alcoolisé*/
+        anthony.boire(vodka);
+        anthony.obtenir_caisse();
+        System.out.println(anthony.porte_monnaie);
+        System.out.println();
     }
     
 }

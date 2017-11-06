@@ -56,9 +56,18 @@ public class Barman extends Humain{
     
     @Override
     public void boire(Boisson boisson){
-        /* Exeption si la boisson est alcoolisé*/
-        super.boire(boisson);
-        boisson.nombre-=1; // il ne paie pas juste la boisson diminue
+        try{
+            if(boisson.degre_alcool>0){
+                throw new Exception("Le barman ne boit pas d'alcool");
+            }
+            else{
+                super.boire(boisson);
+                boisson.nombre-=1; // il ne paie pas juste la boisson diminue
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
     @Override
@@ -73,12 +82,6 @@ public class Barman extends Humain{
         super.parler(phrase + " Coco");
     }
     
-    public void se_Faire_Offrir_un_Verre(Humain amis, Boisson boisson){
-        amis.offrir_Verre(this,boisson);
-        amis.paye(boisson);
-        this.boire(boisson);
-        
-    }
     
     public void offrir_Verre(Client camarade, Boisson boisson, Barman barman){
         if(camarade.cote_popularite>100){
