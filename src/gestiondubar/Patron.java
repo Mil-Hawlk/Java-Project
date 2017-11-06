@@ -23,6 +23,7 @@ public class Patron extends Client {
         {
             parler("Voilà ton argent "+pnomFournisseur.nomFournisseur);
             this.porte_monnaie-=pprixCommande;
+            pnomFournisseur.porte_monnaie+=pprixCommande;
             pnomFournisseur.livrerCommande(bar);
         }
         else
@@ -32,6 +33,7 @@ public class Patron extends Client {
             {
                 bar.barman.vider_caisse_pour_commande();
                 this.porte_monnaie-=pprixCommande;
+                pnomFournisseur.porte_monnaie+=pprixCommande;
                 pnomFournisseur.livrerCommande(bar);
             }
             else

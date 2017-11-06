@@ -11,7 +11,6 @@ package gestiondubar;
  */
 public class Fournisseur extends Humain{
     String nomFournisseur;
-    float argentRecupere = 0;
     Boisson nomBoissonCommande;
     int quantiteCommande = 0;
     
@@ -19,7 +18,6 @@ public class Fournisseur extends Humain{
     {
         super(pprenom,psurnom,pporte_monnaie,pcri);
         this.nomFournisseur = pprenom;
-        this.argentRecupere = pporte_monnaie;
     }
     
     @Override
