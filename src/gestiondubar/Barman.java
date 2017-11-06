@@ -107,7 +107,7 @@ public class Barman extends Humain{
         if(this.caisse>100){
             parler("Voici une partie de la caisse patron ", this.patron);
             this.patron.porte_monnaie+=(this.caisse)-100;
-            this.caisse=(this.caisse)-100;
+            this.caisse=100;
             this.patron.recuperer_Caisse(this);
         }
     }

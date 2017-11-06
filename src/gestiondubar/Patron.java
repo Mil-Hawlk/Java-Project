@@ -28,8 +28,8 @@ public class Patron extends Client {
         }
         else
         {
-            parler("Je n'ai pas assez d'argent pour payer le fournisseur, je pique dans la caisse");
-            if(this.porte_monnaie+bar.barman.obtenir_caisse()-100<pprixCommande)//100€ de marge
+            parler("Je n'ai pas assez d'argent sur moi pour payer le fournisseur, je pique dans la caisse");
+            if(this.porte_monnaie+(bar.barman.obtenir_caisse()-100)>=pprixCommande)//100€ de marge
             {
                 bar.barman.vider_caisse_pour_commande();
                 this.porte_monnaie-=pprixCommande;
@@ -38,7 +38,7 @@ public class Patron extends Client {
             }
             else
             {
-                parler("Je ne peux pas payer le fournisseur avec la caisse, j'annule la commande");
+                parler("Je ne peux pas payer le fournisseur sans taper dans les 100€ de marge de la caisse, j'annule la commande");
                 pnomFournisseur.annulerCommande();
             }
         }
