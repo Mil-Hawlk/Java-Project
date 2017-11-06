@@ -24,9 +24,15 @@ public class Barman extends Humain{
         parler("Je suis le nouveau barman " + this.obtenir_Prenom());
     }
     
-    public void remplir_Stock(Boisson boisson, int nombre){
+    /*public void remplir_Stock(Boisson boisson, int nombre){
         boisson.nombre+=nombre;
         caisse -= nombre * boisson.prix_achat;
+    }*/
+    
+    public void passerCommande(Boisson pboisson, int pquantite, Fournisseur pnomFournisseur, Bar pnomBar)
+    {
+        parler("Salut mon cher "+pnomFournisseur+", Je voudrais te commander "+pquantite+pboisson+" pour le bar "+pnomBar+" , merci !");
+        pnomFournisseur.recevoirCommandeEtFacturer(pboisson,pquantite,pnomBar);
     }
     
     public void servir_Boisson(Boisson boisson, Serveur serveur){
@@ -64,7 +70,7 @@ public class Barman extends Humain{
     @Override
     public void parler(String phrase, Humain camarade){
         System.out.print("Barman ");
-        super.parler(phrase + " Coco",camarade);
+        super.parler(phrase + " Coco");
     }
     
     public void se_Faire_Offrir_un_Verre(Humain amis, Boisson boisson){
