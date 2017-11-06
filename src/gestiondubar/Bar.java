@@ -31,6 +31,7 @@ public class Bar {
         System.out.print("Un nouveau client vient d'arriver" + pclient.obtenir_Prenom());
         nombre_Client+=1;
         this.client[nombre_Client]=pclient;
+        /*Commentaire tout con*/
     }
     
 }
