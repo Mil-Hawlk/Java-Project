@@ -25,7 +25,7 @@ public class GestionDuBar {
         Boisson[] boisson = {cuvee,karmeliete,delirium,eau,coca,vodka};
         
         /* Définir la patronne*/
-        Patron philippine = new Patron("philippine","Coquette",50,"Yeahh",vodka,coca,Bijoux.collier);
+        Patron philippine = new Patron("philippine","Coquette",20,"Yeahh",vodka,coca,Bijoux.collier);
         /*Faire essai si le patron est un homme*/
         /* Définir le barman*/
         Barman anthony = new Barman("anthony","El Barman",10,"HoHoHo",philippine);
@@ -43,7 +43,6 @@ public class GestionDuBar {
         Bar mon_Bar = new Bar(boisson,serveur,philippine,anthony);
         /* On définit un nouveau client*/
         Client david = new Client("david","Brakmar", 20 , "Youhou",cuvee,delirium,TShirt.jaune);
-        Client corentin = new Client("corentin","coco_l_abricot", 20 , "Gnegnegne",cuvee,delirium,valentine);
         /*david prend un verre à serveur pierre */
         System.out.println();
         System.out.println(david.niveau_alcool);
