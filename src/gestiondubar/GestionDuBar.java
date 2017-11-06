@@ -130,6 +130,13 @@ public class GestionDuBar {
         System.out.println(David.cote_popularite);
         System.out.println();
         
+        while(Philippine.niveau_alcool<1000)
+        {
+            David.offrir_Verre(Philippine, vodka, Luc);
+            David.porte_monnaie=David.porte_monnaie+7;
+            System.out.print("Le niveau d'alcolémie de philippine est de : ");
+            System.out.println(Philippine.niveau_alcool);
+        }
     }
     
 }
