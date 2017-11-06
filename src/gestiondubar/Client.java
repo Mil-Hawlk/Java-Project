@@ -18,22 +18,27 @@ public class Client extends Humain {
     protected boolean est_bourre = false;
     protected boolean est_vire = false; 
     
-    public Client(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut){
-        super(cprenom,csurnom,cporte_monnaie,ccrie);
+    public Client verif_Parametre(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut){
         try{
             if(attribut.getClass()!= TShirt.class && attribut.getClass()!=Bijoux.class ){
                 throw new Exception("Ceci n'est ni un homme ni une femme");
             }
             else{
-                this.boisson_favorite=pboisson_favorite;
-                this.boisson_secours=pboisson_secours;
-                this.sexe= new Sexe_Client(attribut);
-                this.se_Presenter();
+               return(new Client(cprenom,csurnom,cporte_monnaie,ccrie,pboisson_favorite,pboisson_secours,attribut));
             }
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+        return null;
+    }
+    
+    protected Client(String cprenom, String csurnom, int cporte_monnaie, String ccrie, Boisson pboisson_favorite, Boisson pboisson_secours, Object attribut){
+        super(cprenom,csurnom,cporte_monnaie,ccrie);
+        this.boisson_favorite=pboisson_favorite;
+        this.boisson_secours=pboisson_secours;
+        this.sexe= new Sexe_Client(attribut);
+        this.se_Presenter();
     }   
    
     public void se_Faire_Offrir_un_Verre(Humain amis, Barman barman){
