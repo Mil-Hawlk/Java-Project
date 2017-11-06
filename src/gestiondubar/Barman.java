@@ -29,20 +29,22 @@ public class Barman extends Humain{
         caisse -= nombre * boisson.prix_achat;
     }
     
-    public void servir_Boisson(Boisson boisson){
+    public void servir_Boisson(Boisson boisson, Serveur serveur){
+        parler("Rapporte ça au client");
         boisson.nombre-=1;
         caisse+=boisson.prix_vente;
         vider_caisse();
     }
     
     public void servir_Boisson(Boisson boisson, Client client){
+        parler("Voici ton verre");
         boisson.nombre-=1;
         caisse+=boisson.prix_vente;
         vider_caisse();
     }
     
     public void servir_Boisson(Boisson boisson, Patron patron){
-        parler("Voici ton verre");
+        parler("Voici ton verre " + patron.obtenir_Prenom());
         boisson.nombre-=1;
     }
     

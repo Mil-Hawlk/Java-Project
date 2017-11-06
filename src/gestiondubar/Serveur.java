@@ -20,8 +20,9 @@ public class Serveur extends Humain{
         this.parler("Je suis le nouveau serveur " + this.obtenir_Prenom());
     }
     
-    public void commander(Client client){
+    public void commander(Client client, Boisson boisson){
         parler("Je vais te chercher ça " + client.obtenir_Prenom());
+        this.barman.servir_Boisson(boisson, this);
         parler("Voici ton verre");
     }
     

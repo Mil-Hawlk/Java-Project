@@ -83,8 +83,7 @@ public class Client extends Humain {
         super.offrir_Verre(camarade, boisson, serveur);
         parler("J'aimerai commander " + boisson.name + " "+ " pour " + camarade.obtenir_Prenom(), serveur);
         this.paye(boisson);
-        serveur.commander(this);
-        serveur.barman.servir_Boisson(boisson,this);
+        serveur.commander(this,boisson);
         camarade.parler("Merci beaucoup", this);
         camarade.boire(boisson);
     }
@@ -106,8 +105,7 @@ public class Client extends Humain {
         /* Si les clients sont de meme sexe et que leur coefficietn est superieur a 8 il ne commande pas s'ils leur coefficient de popularite est inferieur a leur degre alcool*/
         this.parler("J'aimerai commander " + boisson.name + " " + serveur.obtenir_Prenom(),serveur);
         this.paye(boisson);
-        serveur.commander(this);
-        serveur.barman.servir_Boisson(boisson);   
+        serveur.commander(this,boisson);  
         this.boire(boisson);
     }
 }
