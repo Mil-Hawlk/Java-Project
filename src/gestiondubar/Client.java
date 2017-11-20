@@ -40,10 +40,7 @@ public class Client extends Humain {
         this.sexe= new Sexe_Client(attribut);
         this.se_Presenter();
     }   
-   
-    public void se_Faire_Offrir_un_Verre(Humain amis, Barman barman){
-    } // tu te fais offrir ta boisson favorite ou celle de secour ou bien tu ne prends rien
-      
+    
     public void changer_Sexe(Object  new_attribut){
         try{
             if(new_attribut.getClass()!= TShirt.class && new_attribut.getClass()!=Bijoux.class ){
