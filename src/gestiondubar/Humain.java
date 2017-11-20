@@ -55,11 +55,29 @@ public abstract class Humain {
     }
     
     public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
-        this.cote_popularite+=5;
+        if(camarade.getClass() == Barman.class){
+            offrir_Verre((Barman)camarade,boisson);
+        } else {
+            if(camarade.getClass() == Serveur.class){
+                offrir_Verre((Serveur)camarade, boisson);
+            }
+            else {
+                this.cote_popularite+=5;
+            }
+        }
     }
     
     public void offrir_Verre(Humain camarade, Boisson boisson,Serveur serveur){
-        this.cote_popularite+=5;
+               if(camarade.getClass() == Barman.class){
+            offrir_Verre((Barman)camarade,boisson);
+        } else {
+            if(camarade.getClass() == Serveur.class){
+                offrir_Verre((Serveur)camarade, boisson);
+            }
+            else {
+                this.cote_popularite+=5;
+            }
+        }
     }
     
     public void offrir_Verre (Barman barman, Boisson boisson){
