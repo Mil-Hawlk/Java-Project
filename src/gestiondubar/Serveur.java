@@ -37,4 +37,10 @@ public class Serveur extends Humain{
         System.out.print("Serveur ");
         super.parler(phrase);
     }
+    
+    @Override
+    public void parler(String phrase , Humain humain){
+        System.out.print("Serveur ");
+        super.parler(phrase);
+    }
 }

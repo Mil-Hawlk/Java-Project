@@ -84,17 +84,25 @@ public class Barman extends Humain{
     
     
     public void offrir_Verre(Client camarade, Boisson boisson, Barman barman){
-        if(camarade.cote_popularite>100){
-            this.parler("Tiens mon Loulou, je t'offre " + boisson.name, camarade);
-            this.servir_Boisson(boisson,camarade);
-            camarade.boire(boisson);
-            this.paye(boisson);
+        try{
+            if(camarade.cote_popularite<100 || this.porte_monnaie<boisson.prix_vente || boisson.nombre<1 ){
+                throw new Exception("Impossibilité de servir un verre");
+            }
+            else{
+                this.parler("Tiens mon Loulou, je t'offre " + boisson.name, camarade);
+                this.servir_Boisson(boisson,camarade);
+                camarade.boire(boisson);
+                this.paye(boisson);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
     
     /*A chaque tour, le barman vérifie le trop plein de la caisse*/
     protected void vider_caisse(){
-        if(this.caisse>3000){
+        if(this.caisse>500){
             parler("Voici une partie de la caisse patron ", this.patron);
             this.patron.porte_monnaie+=(this.caisse)-100;
             this.caisse=(this.caisse)-100;
@@ -102,14 +110,14 @@ public class Barman extends Humain{
         }
     }
     
-    protected void vider_caisse_pour_commande()
-    {
-        if(this.caisse>100){
-            parler("Voici une partie de la caisse patron ", this.patron);
-            this.patron.porte_monnaie+=(this.caisse)-100;
-            this.caisse=(this.caisse)-100;
-            this.patron.recuperer_Caisse(this);
-        }
+    protected void vider_caisse_pour_commande(){
+        
+        parler("Voici une partie de la caisse patron", this.patron);
+        this.patron.recuperer_Caisse(this);
+        while(this.caisse>100){
+        this.patron.porte_monnaie+=100;
+        this.caisse=(this.caisse)-100;   
+        }      
     }
        
 }

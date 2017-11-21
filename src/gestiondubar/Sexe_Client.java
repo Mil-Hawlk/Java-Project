@@ -25,7 +25,7 @@ public class Sexe_Client {
                 this.sexe = "Femme";
                 this.attribut=pattribut;
             }
-        } // sinon exeption à faire
+        }
     }
     
 }

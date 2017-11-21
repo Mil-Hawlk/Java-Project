@@ -17,6 +17,13 @@ public abstract class Humain {
     protected String crie;
     
     // Constructeur
+    public Humain(){
+        this.prenom="";
+        this.surnom="";
+        this.porte_monnaie=0;
+        this.crie="";
+    }
+    
     public Humain(String cprenom, String csurnom, float cporte_monnaie, String ccrie){
         this.prenom=cprenom;
         this.surnom=csurnom;
@@ -47,7 +54,7 @@ public abstract class Humain {
     }
     
     protected void paye(Boisson boisson){
-        this.porte_monnaie-=boisson.prix_vente;
+        this.porte_monnaie-=boisson.prix_vente;  
     }
     
     protected void boire(Boisson boisson){
@@ -55,29 +62,11 @@ public abstract class Humain {
     }
     
     public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
-        if(camarade.getClass() == Barman.class){
-            offrir_Verre((Barman)camarade,boisson);
-        } else {
-            if(camarade.getClass() == Serveur.class){
-                offrir_Verre((Serveur)camarade, boisson);
-            }
-            else {
-                this.cote_popularite+=5;
-            }
-        }
+        this.cote_popularite+=5;
     }
     
     public void offrir_Verre(Humain camarade, Boisson boisson,Serveur serveur){
-               if(camarade.getClass() == Barman.class){
-            offrir_Verre((Barman)camarade,boisson);
-        } else {
-            if(camarade.getClass() == Serveur.class){
-                offrir_Verre((Serveur)camarade, boisson);
-            }
-            else {
-                this.cote_popularite+=5;
-            }
-        }
+        this.cote_popularite+=5;
     }
     
     public void offrir_Verre (Barman barman, Boisson boisson){

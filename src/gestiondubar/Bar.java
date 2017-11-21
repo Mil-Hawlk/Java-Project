@@ -17,6 +17,7 @@ public class Bar {
     protected Patron patron;
     protected Barman barman;
     protected String name;
+    protected int chaise = 0;
     
     public Bar(Boisson[] pboisson, Serveur[] pserveur, Patron ppatron, Barman pbarman){
         this.boisson=pboisson;
@@ -31,7 +32,13 @@ public class Bar {
         System.out.print("Un nouveau client vient d'arriver" + pclient.obtenir_Prenom());
         nombre_Client+=1;
         this.client[nombre_Client]=pclient;
-        /*Commentaire tout con*/
+        System.out.println("Un nouveau client vient d'arriver, le bar en contient pour l'instant " + this.nombre_Client );
     }
     
+    public void get_Info(){
+    System.out.println("Ce bar s'appelle " + this.name +
+            ".\n La patronne s'appelle " + this.patron.obtenir_Prenom() + 
+            " et il dispose de " + this.nombre_Client + 
+            " clients pour le moments");
+    }
 }

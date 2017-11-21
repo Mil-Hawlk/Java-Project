@@ -19,13 +19,7 @@ public class Fournisseur extends Humain{
         super(pprenom,psurnom,pporte_monnaie,pcri);
         this.nomFournisseur = pprenom;
     }
-    
-    @Override
-    public void parler(String phrase){
-        System.out.print("Serveur ");
-        super.parler(phrase);
-    }
-    
+
     public void recevoirCommandeEtFacturer(Boisson pboisson, int pquantite, Bar pnomBar)
     {
         parler("Bien reçu, j'envoie la facture à la patronne !");
@@ -46,11 +40,25 @@ public class Fournisseur extends Humain{
                 pnomBar.boisson[i].nombre+=this.quantiteCommande;
             }
         }
+        this.nomBoissonCommande = null;
+        this.quantiteCommande = 0;
     }
     
     public void annulerCommande()
     {
         this.nomBoissonCommande = null;
         this.quantiteCommande = 0;
+    }
+    
+    @Override
+    public void parler(String phrase){
+        System.out.print("Fournisseur ");
+        super.parler(phrase);
+    }
+    
+    @Override
+    public void parler(String phrase, Humain humain){
+        System.out.print("Fournisseur ");
+        super.parler(phrase);
     }
 }

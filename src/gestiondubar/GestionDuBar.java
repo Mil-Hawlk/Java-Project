@@ -14,6 +14,9 @@ public class GestionDuBar {
     /**
      * @param args the command line arguments
      */
+    // Il manque l'exception sur le sexe qui est mal faîte
+    // Il manque la tournée générale
+    // Les tables à gérer
     public static void main(String[] args) {
         /*Définir toutes les boissons*/
         Boisson cuvee = new Boisson("Cuvée des Troll",50,8,2,5); /* Cuvée des trolls*50 à 8.7° acheté 2€ et revendu 5€*/
@@ -26,6 +29,7 @@ public class GestionDuBar {
         
         /* Définir la patronne*/
         Patron philippine = new Patron("philippine","Coquette",20,"Yeahh",vodka,coca,Bijoux.collier);
+        Patron piloi = new Patron("philippine","Coquette",20,"Yeahh",vodka,coca,TShirt.jaune);
         /*Faire essai si le patron est un homme*/
         /* Définir le barman*/
         Barman anthony = new Barman("anthony","El Barman",10,"HoHoHo",philippine);
@@ -42,7 +46,10 @@ public class GestionDuBar {
         /* Ouverture du bar*/
         Bar mon_Bar = new Bar(boisson,serveur,philippine,anthony);
         /* On définit un nouveau client*/
-        Client david = new Client("david","Brakmar", 20 , "Youhou",cuvee,delirium,TShirt.jaune);
+        Client david = new Client(
+                "david","Brakmar", 20 , "Youhou",cuvee,
+                delirium,(Object)TShirt.jaune);
+        
         /*david prend un verre à serveur pierre */
         System.out.println();
         System.out.println(david.niveau_alcool);
@@ -195,6 +202,10 @@ public class GestionDuBar {
         System.out.println(karmeliete.nombre);
         System.out.println(plouvier.porte_monnaie);
         System.out.println();
+        david.porte_monnaie=60;
+        System.out.println(david.porte_monnaie);
+        david.offrir_Verre(anthony, vodka);
+          System.out.println(david.porte_monnaie);      
     }
     
 }
