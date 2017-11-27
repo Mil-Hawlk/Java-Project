@@ -9,7 +9,6 @@ package gestiondubar;
  * @author pierr
  */
 public class Serveur extends Humain{
-    /*Faire le sexe*/
     protected Barman barman;
     protected Sexe_Serveur sexe;
     
@@ -20,7 +19,7 @@ public class Serveur extends Humain{
         this.parler("Je suis le nouveau serveur " + this.obtenir_Prenom());
     }
     
-    public void commander(Client client, Boisson boisson){
+    protected void commander(Client client, Boisson boisson){
         parler("Je vais te chercher ça " + client.obtenir_Prenom());
         this.barman.servir_Boisson(boisson, this);
         parler("Voici ton verre");
@@ -28,8 +27,22 @@ public class Serveur extends Humain{
     
     @Override
     public void boire(Boisson boisson){
-    /*Exeption si c'est ce n'est pas de l'eau*/
-    super.boire(boisson);
+    try{
+        if(boisson.nombre<1){
+            throw new Exception("Erreur: Il n'a plus cette boisson");
+        }
+        else{
+            if(boisson.degre_alcool>0){
+                throw new Exception("Erreur: Il ne peut pas boire d'alcool");
+            }
+            else{
+                super.boire(boisson);
+            }
+        }
+    }
+    catch(Exception e){
+        System.out.println(e.getMessage());
+    }
     }
     
     @Override

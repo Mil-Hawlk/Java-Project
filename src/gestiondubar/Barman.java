@@ -9,12 +9,12 @@ package gestiondubar;
  *
  * @author pierr
  */
-public class Barman extends Humain{
+public class Barman extends Humain implements Tournee_generale{
     private int caisse = 80;
     private Patron patron;
     
     /* Accesseur*/
-    public int obtenir_caisse(){
+    protected int obtenir_caisse(){
         return this.caisse;
     }
     
@@ -24,32 +24,27 @@ public class Barman extends Humain{
         parler("Je suis le nouveau barman " + this.obtenir_Prenom());
     }
     
-    /*public void remplir_Stock(Boisson boisson, int nombre){
-        boisson.nombre+=nombre;
-        caisse -= nombre * boisson.prix_achat;
-    }*/
-    
     public void passerCommande(Boisson pboisson, int pquantite, Fournisseur pnomFournisseur, Bar pnomBar)
     {
         parler("Salut mon cher "+pnomFournisseur.nomFournisseur+", Je voudrais te commander "+pquantite+pboisson.name+" pour le bar "+pnomBar.name+" , merci !");
         pnomFournisseur.recevoirCommandeEtFacturer(pboisson,pquantite,pnomBar);
     }
     
-    public void servir_Boisson(Boisson boisson, Serveur serveur){
+    protected void servir_Boisson(Boisson boisson, Serveur serveur){
         parler("Rapporte ça au client");
         boisson.nombre-=1;
         caisse+=boisson.prix_vente;
         vider_caisse();
     }
     
-    public void servir_Boisson(Boisson boisson, Client client){
+    protected void servir_Boisson(Boisson boisson, Client client){
         parler("Voici ton verre");
         boisson.nombre-=1;
         caisse+=boisson.prix_vente;
         vider_caisse();
     }
     
-    public void servir_Boisson(Boisson boisson, Patron patron){
+    protected void servir_Boisson(Boisson boisson, Patron patron){
         parler("Voici ton verre " + patron.obtenir_Prenom());
         boisson.nombre-=1;
     }
@@ -82,10 +77,9 @@ public class Barman extends Humain{
         super.parler(phrase + " Coco");
     }
     
-    
     public void offrir_Verre(Client camarade, Boisson boisson, Barman barman){
         try{
-            if(camarade.cote_popularite<100 || this.porte_monnaie<boisson.prix_vente || boisson.nombre<1 ){
+            if(camarade.cote_popularite<100 || boisson.nombre<1 ){
                 throw new Exception("Impossibilité de servir un verre");
             }
             else{
@@ -118,6 +112,35 @@ public class Barman extends Humain{
         this.patron.porte_monnaie+=100;
         this.caisse=(this.caisse)-100;   
         }      
+    }
+    
+     @Override
+    public void tournee_generale(Bar mon_Bar, Boisson boisson){
+        try{
+            if(mon_Bar.nombre_Client * boisson.prix_vente>this.porte_monnaie){
+                throw new Exception("Erreur: Vous n'avez pas assez d'argent");
+            }
+            else{
+                if(mon_Bar.nombre_Client>boisson.nombre){
+                    throw new Exception("Erreur: Il n'a pas assez de boisson");
+                }
+                else{
+                    this.parler("Tournée générale !!!!!!!");
+                    for(int compteur=0;compteur<mon_Bar.nombre_Client+1;compteur++){
+                        this.servir_Boisson(boisson,(Client)mon_Bar.client.get(compteur));
+                        Client a_servir= (Client)mon_Bar.client.get(compteur);
+                        a_servir.boire(boisson);
+                        this.paye(boisson);
+                        Client servi = (Client)mon_Bar.client.get(compteur);
+                        servi.parler(servi.crie);
+                        mon_Bar.patron.parler(mon_Bar.patron.crie + " Les affaires reprennent");
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
        
 }

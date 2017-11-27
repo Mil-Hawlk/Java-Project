@@ -9,33 +9,18 @@ package gestiondubar;
  *
  * @author pierr
  */
-public class Client extends Humain {
+
+public class Client extends Humain implements Tournee_generale {
     
     protected Boisson boisson_favorite;
     protected Boisson boisson_secours;
     protected int niveau_alcool = 0;
     protected Sexe_Client sexe;
     protected int est_bourre = 0;
-    protected boolean est_vire = false; 
+    protected int est_interieur = 0; 
+    protected boolean est_Attablé = false;
     
-    public Client verif_Parametre(String cprenom, String csurnom, // pas mis sur le compte rendu pour l'instant
-            int cporte_monnaie, String ccrie, Boisson pboisson_favorite, 
-            Boisson pboisson_secours, Object attribut){
-        try{
-            if(attribut.getClass()!= TShirt.class && attribut.getClass()!=Bijoux.class ){
-                throw new Exception("Ceci n'est ni un homme ni une femme");
-            }
-            else{
-               return(new Client(cprenom,csurnom,cporte_monnaie,ccrie,pboisson_favorite,pboisson_secours,attribut));
-            }
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-    
-    public Client(String cprenom, String csurnom, int cporte_monnaie, 
+    protected Client(String cprenom, String csurnom, int cporte_monnaie, 
             String ccrie, Boisson pboisson_favorite, 
             Boisson pboisson_secours, Object attribut){
         super(cprenom,csurnom,cporte_monnaie,ccrie);
@@ -70,7 +55,9 @@ public class Client extends Humain {
     }
     
     public void parler(String phrase, Serveur serveur){
-        if(this.niveau_alcool>45 ){
+        switch(this.est_interieur){
+            case(0):
+                if(this.niveau_alcool>45 ){
                 if(this.sexe.sexe == "Homme" && serveur.sexe.sexe=="Femme")
                 {
                     super.parler(phrase + " Poupée");}
@@ -80,35 +67,49 @@ public class Client extends Humain {
                     }
                     else{
                         super.parler(phrase);
+                        }
                     }
                 }
-            }
-        else{
-            super.parler(phrase);
-        }
-        }
+                else{
+                    super.parler(phrase);
+                }
+                break;
+            case(1):
+                System.out.println(this.obtenir_Prenom() + ". Vous n'êtes pas dans le bar");
+                break;
+        }        
+    }
     
     public void se_Faire_Offrir(Humain camarade, Barman barman){        
-        if(this.cote_popularite>50){
-            if(this.boisson_favorite.nombre>0){
-                parler("Hey tu ne voudrais pas m'offrir un verre", camarade);
-                camarade.offrir_Verre(this, this.boisson_favorite, barman);
-                this.cote_popularite-=50;
-            } else {
-                if(this.boisson_secours.nombre>0){
+        switch(this.est_interieur){
+            case(0):
+                if(this.cote_popularite>50){
+                    if(this.boisson_favorite.nombre>0){
+                    parler("Hey tu ne voudrais pas m'offrir un verre", camarade);
+                    camarade.offrir_Verre(this, this.boisson_favorite, barman);
+                    this.cote_popularite-=50;
+                } else {
+                    if(this.boisson_secours.nombre>0){
                     parler("Hey tu ne voudrais pas m'offrir un verre", camarade);
                     camarade.offrir_Verre(this, this.boisson_secours, barman);
                     this.cote_popularite-=50;
-                }
-                else {
+                } else {
                     camarade.parler("Non désolé mon pote",this);
+                       }
+                        }
                 }
-            }
+            break;
+            case(1):
+                System.out.println(this.obtenir_Prenom() + ". Vous n'êtes pas dans le bar");
+            break;
+                        
         }
     }
     
     public void se_Faire_Offrir(Humain camarade, Serveur serveur){
-        if(this.cote_popularite>50){
+        switch(this.est_interieur){
+            case(0):
+               if(this.cote_popularite>50){
             if(this.boisson_favorite.nombre>0){
                 parler("Hey tu ne voudrais pas m'offrir un verre", camarade);
                 camarade.offrir_Verre(this, this.boisson_favorite, serveur);
@@ -124,37 +125,77 @@ public class Client extends Humain {
                 }
             }
         }
-    }
-   
-    public void commander(Boisson boisson, Barman barman){
-        try {
-            if(this.porte_monnaie<boisson.prix_vente || boisson.nombre<1){
-                throw new Exception("Impossibilité de vous servir");
-            }
-            else {
-                if(this.est_bourre == 1){
-                barman.parler("Désolé je ne peux plus te servir",this);
-            }
-            else{
-                this.paye(boisson);
-                barman.servir_Boisson(boisson,this);
-                this.boire(boisson);
-                }
-            }
+               break;
+               case(1):
+                   System.out.println("Vous n'êtes pas dans le bar");
         }
-        catch (Exception e ){
-            System.out.println(e.getMessage());
-        }}
+    }
     
+    public void commander(Boisson boisson, Barman barman){
+            switch(this.est_interieur){
+                case(0):
+                    try{
+                        throw new Exception("Erreur: Vous n'êtes pas à l'interieur");
+                    }
+                    catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case(1):
+                    try{
+                        if(this.porte_monnaie<boisson.prix_vente){
+                            throw new Exception ("Vous n'avez pas assez d'argent");
+                        }
+                        else{
+                            try{
+                                if(boisson.nombre<1){
+                                    throw new Exception ("Il n'a plus cette boisson");
+                                }
+                                else{
+                                    if(this.est_bourre == 1){
+                                        barman.parler("Désolé je ne peux plus te servir",this);
+                                    }
+                                    else{
+                                        this.parler("J'aimerai commander " + boisson.name,barman);
+                                        this.paye(boisson);
+                                        barman.servir_Boisson(boisson,this);
+                                        this.boire(boisson);
+                                    }
+                                }
+                            }
+                            catch (Exception e){
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+            }
+    }  
+
     public void commander(Boisson boisson, Serveur serveur){
-        try {
-             /* Si les clients sont de sexes opposés et que le coeficient de charmes est supérieur à 8 il leur paie un verre*/
-             /* Si les clients sont de meme sexe et que leur coefficietn est superieur a 8 il ne commande pas s'ils leur coefficient de popularite est inferieur a leur degre alcool*/
-            this.parler("J'aimerai commander " + boisson.name + " " + serveur.obtenir_Prenom(),serveur);
-            if(this.porte_monnaie<boisson.prix_vente || boisson.nombre<1){
-                    throw new Exception("Impossibilité de vous servir");
+        switch(this.est_interieur){
+            case(0):
+                try{
+                    throw new Exception("Erreur: Vous n'êtes pas à l'interieur");
                 }
-                else {
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case(1):
+                try{
+                    if(this.porte_monnaie<boisson.prix_vente){
+                        throw new Exception("Erreur: Vous n'avez pas assez d'argent");
+                    }
+                    else{
+                        if(boisson.nombre<1){
+                            throw new Exception("Erreur: Il n'a plus de cette boisson");
+                        }
+                        else{
+                                            this.parler("J'aimerai commander " + boisson.name + " " + serveur.obtenir_Prenom(),serveur);
                 switch(this.est_bourre){ // mise en place d'un switch afin de ne pas dépasser le quota de 3 if - else par fonction
                 case(1):
                     serveur.parler("Désolé je ne peux plus te servir", this);
@@ -177,13 +218,20 @@ public class Client extends Humain {
                             }
                         }
                     break;
+                    } 
+                        }
                     }
                 }
-            }
-        catch (Exception e ){
-            System.out.println(e.getMessage());
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            break;            
         }
     }  
+    
+    public void quitter_Bar(Bar mon_Bar){
+        mon_Bar.quitter_client(this);
+    }
     
     @Override
     public void se_Presenter(){
@@ -193,29 +241,56 @@ public class Client extends Humain {
     
     @Override
     protected void boire(Boisson boisson){
-        super.boire(boisson);
-        this.niveau_alcool+=boisson.degre_alcool;
+        switch(this.est_interieur){
+            case(0):
+                try {
+                    throw new Exception("Vous n'êtes pas dans le bar");
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case(1):
+                super.boire(boisson);
+                this.niveau_alcool+=boisson.degre_alcool;
+                break;
+        }
     }
     
     @Override
     public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
-        if(camarade.getClass()==Barman.class){
+        switch(this.est_interieur){
+            case(0):
+                try{
+                    throw new Exception("Erreur: Vous n'êtes pas dans le bar");
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case(1):
+                if(camarade.getClass()==Barman.class){
             this.offrir_Verre((Barman)camarade, boisson);
         } else {
             if(camarade.getClass()== Serveur.class){
                 this.offrir_Verre((Serveur)camarade, boisson);
             } else {
                 try{
-                    if(boisson.prix_vente>this.porte_monnaie || boisson.nombre<1){
-                        throw new Exception("Impossibilté de vous vendre cette boisson");
+                    if(boisson.prix_vente>this.porte_monnaie){
+                        throw new Exception("Erreur: Vous n'avez pas assez d'argent");
                     }
                     else{
+                        if(boisson.nombre<1){
+                            throw new Exception("Erreur: Plus assez de boisson");
+                        }
+                        else{
                         parler("J'aimerai commander " + boisson.name + " "+ " pour " + camarade.obtenir_Prenom(), barman);    
                         super.offrir_Verre(camarade, boisson, barman);
                         this.paye(boisson);
                         barman.servir_Boisson(boisson,this);
                         camarade.parler("Merci beaucoup", this);
                         camarade.boire(boisson);
+                        }
                     }
                 }
                 catch(Exception e){
@@ -223,20 +298,36 @@ public class Client extends Humain {
                 }
             }
         }
+                break;
+        }
     }
     
     @Override
     public void offrir_Verre(Humain camarade, Boisson boisson, Serveur serveur){
-        if(camarade.getClass()==Barman.class){
+        switch(this.est_interieur){
+            case(0):
+                try{
+                    throw new Exception("Erreur: Vous n'êtes pas dans le bar");
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case (1):
+             if(camarade.getClass()==Barman.class){
             this.offrir_Verre((Barman)camarade, boisson);
         } else {
             if(camarade.getClass()== Serveur.class){
                 this.offrir_Verre((Serveur)camarade, boisson);
             } else {
                 try{
-                    if(boisson.prix_vente>this.porte_monnaie || boisson.nombre<1){
-                        throw new Exception("Impossibilté de vous vendre cette boisson");
+                    if(boisson.prix_vente>this.porte_monnaie){
+                        throw new Exception("Erreur: Vous n'avez pas assez d'argent");
                     }
+                    else{
+                        if(boisson.nombre<1){
+                            throw new Exception("Erreur: Il n'a plus de cette boissons");
+                        }
                     else{
                         parler("J'aimerai commander " + boisson.name, serveur);    
                         super.offrir_Verre(camarade, boisson , serveur);
@@ -246,27 +337,120 @@ public class Client extends Humain {
                         camarade.boire(boisson);
                     }
                 }
+                }
                 catch(Exception e){
                     System.out.println(e.getMessage());
                 }
             }
-        } 
+        }
+                break;
+        }
     }
     
     @Override
     public void offrir_Verre (Barman barman, Boisson boisson){
+        switch(this.est_interieur){
+            case(0):
+                try{
+                    throw new Exception("Erreur: Vous n'êtes pas dans le bar");
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case(1):
+                try{
+                    if(boisson.prix_vente>this.porte_monnaie){
+                throw new Exception("Erreur: Vous n'avez pas assez d'argent");
+                    }
+                    else {
+                        if(boisson.nombre<1){
+                            throw new Exception("Erreur: Il n'a plus cette boisson");
+                        } else {
+                            if(boisson.degre_alcool>0){
+                                throw new Exception("Erreur: Il ne peut pas boire de l'alcool");
+                            }
+                            else {
+                            parler("J'aimerai commander " + boisson.name + " mon pote");
+                            super.offrir_Verre(barman, boisson);
+                            this.paye(boisson);
+                            barman.servir_Boisson(boisson, this);
+                            this.parler("Vas-y je t'en pris c'est pour toi", barman);
+                            barman.parler("Merci beaucoup",this);
+                            barman.boire(boisson);
+                            }
+                        }
+                    }
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+        }
+    }
+    
+    @Override
+    public void offrir_Verre (Serveur serveur, Boisson boisson){
+        switch(this.est_interieur){
+            case(0):
+                try{
+                    throw new Exception("Erreur:Vous n'êtes pas dans le bar");
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case(1):
+                try{
+                    if(boisson.prix_vente>this.porte_monnaie){
+                        throw new Exception("Erreur: Vous n'avez pas assez d'argent");
+                    }
+                    else {
+                        if(boisson.nombre<1){
+                            throw new Exception("Erreur: Il n'a plus cette boisson");
+                        }
+                        else {
+                            if(boisson.degre_alcool>0){
+                                throw new Exception("Erreur: Boisson alcoolisée");
+                            }
+                            else {
+                            super.offrir_Verre(serveur, boisson);
+                            parler("J'aimerai commander " + boisson.name + " "+ "mon pote");
+                            this.paye(boisson);
+                            serveur.commander(this, boisson);
+                            this.parler("c'est pour toi mon pote",serveur);
+                            serveur.parler("Merci beaucoup",this);
+                            serveur.boire(boisson);
+                            }
+                        }
+                            
+                    }
+                }
+                catch(Exception e){
+                    System.out.println(e.getClass());
+                }
+                break;
+        }
+    }
+    
+    @Override
+    public void tournee_generale(Bar mon_Bar, Boisson boisson){
         try{
-            if(boisson.prix_vente>this.porte_monnaie || boisson.degre_alcool>0 || boisson.nombre<1){
-                throw new Exception("Impossibilité de servir cette boisson");
+            if(mon_Bar.nombre_Client * boisson.prix_vente>this.porte_monnaie){
+                throw new Exception("Erreur: Vous n'avez pas assez d'argent");
             }
-            else {
-                parler("J'aimerai commander " + boisson.name + " mon pote");
-        super.offrir_Verre(barman, boisson);
-        this.paye(boisson);
-        barman.servir_Boisson(boisson, this);
-        this.parler("Vas-y je t'en pris c'est pour toi", barman);
-        barman.parler("Merci beaucoup",this);
-        barman.boire(boisson);
+            else{
+                if(mon_Bar.nombre_Client>boisson.prix_vente){
+                    throw new Exception("Erreur: Il n'a pas assez de boisson");
+                }
+                else{
+                    for(int compteur=0;compteur<mon_Bar.nombre_Client+1;compteur++){
+                        this.offrir_Verre((Client)mon_Bar.client.get(compteur), boisson, mon_Bar.barman);
+                        Client servi = (Client)mon_Bar.client.get(compteur);
+                        servi.parler(crie);
+                        mon_Bar.patron.parler(mon_Bar.patron.crie + " Les affaires reprennent");
+                    }
+                }
             }
         }
         catch(Exception e){
@@ -274,25 +458,19 @@ public class Client extends Humain {
         }
     }
     
-    @Override
-    public void offrir_Verre (Serveur serveur, Boisson boisson){
+    public void s_attabler(Table table){
         try{
-            if(boisson.prix_vente>this.porte_monnaie || boisson.degre_alcool>0 || boisson.nombre<1){
-                throw new Exception("Impossibilité de servir cette boisson");
+            if(this.est_interieur == 0){
+                throw new Exception("Erreur: Vous n'êtes pas à l'interieur");
             }
-            else {
-                    super.offrir_Verre(serveur, boisson);
-                    parler("J'aimerai commander " + boisson.name + " "+ "mon pote");
-                    this.paye(boisson);
-                    serveur.commander(this, boisson);
-                    this.parler("c'est pour toi mon pote",serveur);
-                    serveur.parler("Merci beaucoup",this);
-                    serveur.boire(boisson);
+            else{
+                this.est_Attablé = true;
+                table.client.add(this);
+                table.place--;
             }
-            
         }
-        catch(Exception e) {
-            e.getMessage();
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }
