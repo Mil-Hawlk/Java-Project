@@ -15,22 +15,15 @@ public class PartieBelotte {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Carte maCarte = new Carte(CarteValeur.As,Couleur.Coeur);
-        System.out.println("La carte est "+maCarte.figure.nom+" de couleur "+maCarte.couleur);
-        JeuDeCartes monJeu = new JeuDeCartes();
-        System.out.println(monJeu.monJeu[0].getNom()+monJeu.monJeu[0].getCouleur());
-        System.out.println(monJeu.monJeu[15].getNom()+monJeu.monJeu[15].getCouleur());
-        System.out.println(monJeu.monJeu[31].getNom()+monJeu.monJeu[31].getCouleur());
-        monJeu.melangerCartes();
-        System.out.println(monJeu.monJeu[0].getNom()+monJeu.monJeu[0].getCouleur());
-        System.out.println(monJeu.monJeu[15].getNom()+monJeu.monJeu[15].getCouleur());
-        System.out.println(monJeu.monJeu[31].getNom()+monJeu.monJeu[31].getCouleur());
-        monJeu.triCartes();
-        monJeu.couper(11);
-        monJeu.couper(21);
-        System.out.println(monJeu.monJeu[0].getNom()+monJeu.monJeu[0].getCouleur());
-        System.out.println(monJeu.monJeu[15].getNom()+monJeu.monJeu[15].getCouleur());
-        System.out.println(monJeu.monJeu[31].getNom()+monJeu.monJeu[31].getCouleur());
+        System.out.println("Début de la partie de belotte");
+        Joueur j1 = new Joueur("David",1);
+        Joueur j2 = new Joueur("Pierre",2);
+        Joueur j3 = new Joueur("Jacky",3);
+        Joueur j4 = new Joueur("Michel",4);
+        System.out.println("Lancement de la première manche");
+        Manche manche1 = new Manche(j1, j2, j3, j4);
+        manche1.jouerManche(j1, j2, j3, j4);
+        j1.afficherPaquet();
     }
     
 }

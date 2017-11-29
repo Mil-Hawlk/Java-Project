@@ -6,7 +6,8 @@
 package partieBelotte;
 
 /**
-Cette énumération contient toutes les valeurs possibles pour un jeu de cartes
+Cette énumération contient toutes les valeurs possibles pour un jeu de cartes,
+* ainsi que la valeur des cartes en non-atout et en atout à la belotte
  */
 public enum CarteValeur {
     As("As",11,11),
@@ -18,14 +19,30 @@ public enum CarteValeur {
     huit("8",0,0),
     sept("7",0,0);
     
-    String nom;
-    int valNorm;
-    int valAtout;
+    private String nom;
+    private int valNorm;
+    private int valAtout;
     
-    private CarteValeur(String nomCarte, int valNormCarte, int valAtoutCarte)
+    private CarteValeur(String pNom, int pValNorm, int pValAtout)
     {
-        this.nom = nomCarte;
-        this.valNorm = valNormCarte;
-        this.valAtout = valAtoutCarte;
+        nom = pNom;
+        valNorm = pValNorm;
+        valAtout = pValAtout;
     }
+    
+        public String getNom()
+    {
+        return nom;
+    }
+    
+    public int getValeurNormale()
+    {
+        return valNorm;
+    }
+    
+    public int getValeurAtout()
+    {
+        return valAtout;
+    }
+
 }

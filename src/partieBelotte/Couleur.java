@@ -4,15 +4,21 @@ package partieBelotte;
  Une couleur est soit Pique, soit Carreau, soit Trèfle ou Coeur
  */
 public enum Couleur {
-    Pique("Pique"),
     Carreau("Carreau"),
-    Trefle("Trèfle"),
-    Coeur("Coeur");
+    Coeur("Coeur"),
+    Pique("Pique"),
+    Trefle("Trèfle");
+
     
-    String nom;
+    private String nom;
     
-    private Couleur(String nomCouleur)
+    Couleur(String pNom)
     {
-        this.nom = nomCouleur;
+        nom = pNom;
+    }
+
+    public String getCouleur()
+    {
+        return nom;
     }
 }

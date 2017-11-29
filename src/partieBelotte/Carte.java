@@ -4,32 +4,33 @@ package partieBelotte;
 Une carte se définit par une figure représentée par la classe CarteValeur et par une couleur
  */
 public class Carte {
-    Couleur couleur;
-    CarteValeur figure;
+    private Couleur couleur;
+    private CarteValeur figure;
     
-    public Carte(CarteValeur figureCarte, Couleur couleurCarte)
+    protected Carte(CarteValeur pFigure, Couleur pCouleur)
     {
-        this.couleur = couleurCarte;
-        this.figure = figureCarte;
-    }
-    
-    int getValeurNorm()
-    {
-        return this.figure.valNorm;
+        couleur = pCouleur;
+        figure = pFigure;
     }
     
-    int getValeurAtout()
+    public String getCouleur()
     {
-        return this.figure.valAtout;
-    }
-
-    Couleur getCouleur()
-    {
-        return this.couleur;
+        return couleur.getCouleur();
     }
     
-    String getNom()
+    public String getFigure()
     {
-        return this.figure.nom;
+        return figure.getNom();
     }
+    
+    public int getValeurAtout()
+    {
+        return figure.getValeurAtout();
+    }
+    
+    public int getValeurNormale()
+    {
+        return figure.getValeurNormale();
+    }
+    
 }
