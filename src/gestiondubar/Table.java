@@ -29,4 +29,26 @@ public class Table {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void quitter(Client pclient){
+        try{
+            int compteur=0;
+            while(compteur<this.client.size() && 
+                    this.client.get(compteur)!=pclient){
+                compteur++;
+                }
+                if(this.client.get(compteur) == pclient){
+                    this.client.remove(compteur);
+                    pclient.est_interieur=0;
+                    this.place++;
+                }
+                else{
+                throw new Exception("Erreur: Le client n'est pas présent dans "
+                        + "le bar"); 
+                }
+        } 
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

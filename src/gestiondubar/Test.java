@@ -54,6 +54,7 @@ public class Test {
                 delirium,(Object)TShirt.jaune);
         Client kilianette = new Client( "Kiliannette","brise-frontal", 50 , "MEC!!",delirium,
                 cuvee,(Object)Bijoux.collier);
+        david.parler("coucoucoucoucouc", pierre);
         /*On ouvre le Bar */
         Bar mon_Bar = new Bar(boissons,serveur,philippine,anthony,tables); 
         /* On essaie d'ouvrir un bar avec un patron homme (Erreur)*/

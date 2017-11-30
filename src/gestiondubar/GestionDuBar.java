@@ -6,21 +6,22 @@
 package gestiondubar;
 
 /**
- *
- * @author pierr
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
+ * @author david
+ * @version 1.0
  */
 public class GestionDuBar {
 
     /**
      * @param args the command line arguments
      */
-    // Il manque la tournée générale
-    // Les tables à gérer
-    //boisson serveurs
+    
     public static void main(String[] args) {
         Test test = new Test();
-        test.creation_bar();
+        //test.creation_bar();
         //test.test_changement_sexe();
-        //test.test_tournee_generale();
+        test.test_tournee_generale();
+        
     }
 }
