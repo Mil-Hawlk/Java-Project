@@ -6,8 +6,10 @@
 package gestiondubar;
 
 /**
- *
- * @author pierr
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
+ * @author david
+ * @version 1.0
  */
 public class Sexe_Client {
     
@@ -15,7 +17,13 @@ public class Sexe_Client {
     String sexe;
     Object attribut;
     
+    /**
+     * 
+     * @param pattribut 
+     */
     public Sexe_Client(Object pattribut){
+        /*Le client est une femme si son attribut est de la classe bijou ou 
+        c'est un homme si son attribut est de la classe TShirt*/
         if(pattribut.getClass() == TShirt.class){
             this.sexe= "Homme";
             this.attribut=pattribut;
@@ -25,7 +33,7 @@ public class Sexe_Client {
                 this.sexe = "Femme";
                 this.attribut=pattribut;
             }
-        } // sinon exeption à faire
+        }
     }
     
 }

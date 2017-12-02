@@ -6,18 +6,11 @@
 package gestiondubar;
 
 /**
- * Here is a JavaDoc comment in plain HTML for a class 
- * @author pierre
- * @author david
- * @version 1.0
+ *
+ * @author pierr
  */
-public enum TShirt {
-    rouge,
-    bleu,
-    noir,
-    jaune,
-    violet,
-    rose,
-    vert;
+public interface Tournee_generale {
+    
+    public void tournee_generale(Bar mon_Bar, Boisson boisson);
     
 }

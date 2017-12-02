@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Client.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Fournisseur.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Humain.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Serveur.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Sexe_Client.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/GestionDuBar.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Barman.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Sexe_Serveur.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Boisson.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Bar.java</file>
-            <file>file:/C:/Users/pierr/Documents/gitprojet/Java-project/src/gestiondubar/Patron.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/Joueur.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/JouerBelote.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/CarteValeur.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/Carte.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/Manche.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/gestiondubar/GestionDuBar.java</file>
+            <file>file:/D:/Users/david/Documents/NetBeansProjects/Projet%20bar/Java-Project/src/partieBelotte/PartieBelotte.java</file>
         </group>
     </open-files>
 </project-private>
