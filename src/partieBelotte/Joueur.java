@@ -14,9 +14,10 @@ import java.util.Random;
 public class Joueur {
     private String nomDuJoueur;
     private Carte mainDuJoueur[] = new Carte[8]; 
-    private int numeroJoueur = 0;
+    private  int numeroJoueur;
     private int score = 0;
-    private int numeroEquipe = 0;
+    private int numeroEquipe;
+    private static int incrementJoueur = 0;
     
     /*Constructeur 3 : On a toutes les infos sur le joueur*/
     protected Joueur(String pNomDuJoueur, int pNumeroJoueur, int pScore)
@@ -38,10 +39,12 @@ public class Joueur {
     /*Constructeur 1: on n'a que le nom du joueur*/
     protected Joueur(String pNomDuJoueur)
     {
+        this.incrementJoueur++;
         nomDuJoueur = pNomDuJoueur;
+        numeroJoueur = incrementJoueur;
     }
     
-    public void tirageSortEquipes(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
+    protected void tirageSortEquipes(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
     {
         int i=0;
         int j=0;
@@ -87,7 +90,7 @@ public class Joueur {
         return numeroEquipe;
     }
     
-        protected void ajouterCarte(Carte carteAjout, int rang)
+    protected void ajouterCarte(Carte carteAjout, int rang)
     {
         mainDuJoueur[rang] = carteAjout;
     }
@@ -106,7 +109,7 @@ public class Joueur {
             if(mainDuJoueur[i-1]!=null)
             {
                 System.out.println("Carte n°"+i+": "
-                        +mainDuJoueur[i-1].getFigure()+" de "
+                        +mainDuJoueur[i-1].getFigureNom()+" de "
                         +mainDuJoueur[i-1].getCouleur());
             }
         }
@@ -179,6 +182,18 @@ public class Joueur {
             }
         }
         return nombreCartes;
+    }
+    
+    protected boolean estUneCarte(int rang)
+    {
+        if(mainDuJoueur[rang]!=null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
 }

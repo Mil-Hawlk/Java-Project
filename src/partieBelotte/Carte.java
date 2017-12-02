@@ -18,9 +18,14 @@ public class Carte {
         return couleur.getCouleur();
     }
     
-    public String getFigure()
+    public String getFigureNom()
     {
         return figure.getNom();
+    }
+    
+    public CarteValeur getFigure()
+    {
+        return figure;
     }
     
     public int getValeurAtout()

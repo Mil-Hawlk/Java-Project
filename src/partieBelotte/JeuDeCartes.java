@@ -59,7 +59,7 @@ public class JeuDeCartes {
             if(monJeu[i-1]!=null)
             {
                 System.out.println("Carte n°"+i+": "
-                        +monJeu[i-1].getFigure()+" de "
+                        +monJeu[i-1].getFigureNom()+" de "
                         +monJeu[i-1].getCouleur());
             }
         }
@@ -109,8 +109,13 @@ public class JeuDeCartes {
     protected void afficherCarteTournante()
     {
         /*Après distribution, la carte tournante est la 21e carte (n°20)*/
-        System.out.println("La carte tournante est "+monJeu[20].getFigure()+
-                " de "+monJeu[20].getCouleur());
+        System.out.println("La carte tournante est "+monJeu[20].getFigureNom()+
+                " de "+monJeu[20].getCouleur()+"\n");
+    }
+    
+    protected String donnerCouleurCarteTournante()
+    {
+        return monJeu[20].getCouleur();
     }
     
     protected void deuxiemeDistribution(Joueur j1, Joueur j2, Joueur j3, Joueur j4, int joueurQuiPrend)
@@ -172,6 +177,6 @@ public class JeuDeCartes {
     
     protected void afficherCarte(int rang)
     {
-        System.out.println("Il s'agit du "+monJeu[rang].getFigure()+" de "+monJeu[rang].getCouleur());
+        System.out.println("Il s'agit du "+monJeu[rang].getFigureNom()+" de "+monJeu[rang].getCouleur());
     }
 }

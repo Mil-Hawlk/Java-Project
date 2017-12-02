@@ -1,0 +1,18 @@
+﻿Lors de la partie, 
+ le joueur Luc a obtenu 122 points avec son partenaire
+ le joueur Jean a obtenu 40 points avec son partenaire
+ le joueur Patrick a obtenu 122 points avec son partenaire
+ le joueur André a obtenu 40 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Luc a obtenu 88 points avec son partenaire
+ le joueur Jean a obtenu 74 points avec son partenaire
+ le joueur Patrick a obtenu 88 points avec son partenaire
+ le joueur André a obtenu 74 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Luc a obtenu 0 points avec son partenaire
+ le joueur Jean a obtenu 162 points avec son partenaire
+ le joueur Patrick a obtenu 0 points avec son partenaire
+ le joueur André a obtenu 162 points avec son partenaire
+
