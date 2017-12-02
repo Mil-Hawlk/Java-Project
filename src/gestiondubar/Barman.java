@@ -115,7 +115,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -149,7 +149,7 @@ public class Barman extends Humain implements Tournee_generale{
      * @param barman 
      * @exception Exception
      */
-    public void offrir_Verre(Client camarade, Boisson boisson, Barman barman){
+    public void offrir_Verre(Client camarade, Boisson boisson){
         /*Exception si le client n'est pas assez populaire ou bien s'il n'a plus
         de cette boisson*/
         try{
@@ -173,7 +173,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -212,7 +212,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -256,7 +256,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
        

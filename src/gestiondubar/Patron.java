@@ -38,8 +38,9 @@ public class Patron extends Client {
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
+        super.est_interieur = 1;
         
     }
     
@@ -82,14 +83,14 @@ public class Patron extends Client {
             }
             else /*Sinon exception elle n'a pas assez d'argent*/
             {
+                pnomFournisseur.annulerCommande();
                 throw new Exception("Erreur: Annulation de la commande, manque "
                         + "d'argent");
             }
         }
     }
         catch(Exception e) {
-        System.err.println(e.getMessage());
-        pnomFournisseur.annulerCommande();
+        System.out.println(e.getMessage());
         }
     
    }
@@ -243,7 +244,7 @@ public class Patron extends Client {
                     }                 
                 }
                 catch (Exception e){
-                    System.err.println(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             }
         } 
@@ -277,7 +278,7 @@ public class Patron extends Client {
                     }                 
                 }
                 catch (Exception e){
-                    System.err.println(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             }
         } 
@@ -313,7 +314,7 @@ public class Patron extends Client {
             }
         }
         catch( Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -344,7 +345,7 @@ public class Patron extends Client {
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     

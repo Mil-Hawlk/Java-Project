@@ -13,6 +13,7 @@ package gestiondubar;
  */
 import java.util.LinkedList;
 import java.util.List;
+import partieBelotte.JouerBelote;
 
 public class Table {
     protected int place = 4;
@@ -30,6 +31,13 @@ public class Table {
             }
             else{
                 System.out.println("GO pour la partie");
+                Client joueur1 = (Client)client.get(0);
+                Client joueur2 = (Client)client.get(1);
+                Client joueur3 = (Client)client.get(2);
+                Client joueur4 = (Client)client.get(3);
+                JouerBelote maPartie = new JouerBelote(81,joueur1.getPrenom(),
+                        joueur2.getPrenom(),joueur3.getPrenom(),
+                        joueur4.getPrenom());
             }
         }
         catch(Exception e){
@@ -61,7 +69,7 @@ public class Table {
                 }
         } 
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }

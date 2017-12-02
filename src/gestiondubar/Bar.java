@@ -57,7 +57,7 @@ public class Bar {
             }
         }
         catch(Exception e){
-        System.err.println(e.getMessage());
+        System.out.println(e.getMessage());
         }
     }
     
@@ -83,7 +83,7 @@ public class Bar {
             }
         }
         catch(Exception e ){
-        System.err.println(e.getMessage());
+        System.out.println(e.getMessage());
         }
     }
     
@@ -120,7 +120,7 @@ public class Bar {
                 }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     
@@ -156,14 +156,14 @@ public class Bar {
                         this.nombre_Client +=1;
                         client.add(pclient);
                         System.out.println(pclient.getPrenom() + " dit le "
-                                + pclient.getPrenom() + 
+                                + pclient.getSurnom()+ 
                                 " rentre dans le bar");
                     }
                 }
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         } 
     }
     

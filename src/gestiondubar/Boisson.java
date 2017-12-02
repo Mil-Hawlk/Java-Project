@@ -35,4 +35,7 @@ public class Boisson {
         this.prix_vente=pprix_vente;
         this.prix_achat=pprix_achat;
     }
+    public int getNombre(){
+        return(this.nombre);
+    }
 }

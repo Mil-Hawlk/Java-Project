@@ -33,7 +33,7 @@ public class Client extends Humain implements Tournee_generale {
      * @param attribut 
      * @exception Exception
      */
-    protected Client(String cprenom, String csurnom, int cporte_monnaie, 
+    public Client(String cprenom, String csurnom, int cporte_monnaie, 
             String ccrie, Boisson pboisson_favorite, 
             Boisson pboisson_secours, Object attribut){
         /*Constructeur des clients qui hérite des humains, exception si le 
@@ -75,11 +75,13 @@ public class Client extends Humain implements Tournee_generale {
         try{
             if(new_attribut.getClass()!= TShirt.class && 
                     new_attribut.getClass()!=Bijoux.class ){
-                throw new Exception("Il ne peut pas changer de sexe mauvais "
+                throw new Exception("Erreur: Il ne peut pas changer de sexe mauvais "
                         + "attribut");
             }
             else{
                 this.sexe = new Sexe_Client(new_attribut);  
+                System.out.println(this.getPrenom() + " Changement de sexe " 
+                        + this.sexe.sexe);
             }
         }
         catch (Exception e){
@@ -189,7 +191,8 @@ public class Client extends Humain implements Tournee_generale {
         try{
             switch(this.est_interieur){
                 case(0):
-                    throw new Exception("Erreur: Vous n'êtes pas à l'interieur");
+                    throw new Exception("Erreur: Vous n'êtes pas à l'interieur"
+                    );
                 case(1):
                     if(this.porte_monnaie<boisson.prix_vente){
                             throw new Exception ("Vous n'avez pas assez "
@@ -246,8 +249,8 @@ public void commander(Boisson boisson, Serveur serveur){
             }                /*Si le client est bourre il ne peut pas le servir
             */
 
-            if(this.est_bourre==0){
-                serveur.parler("Décolé je ne peux plus te servir", this);
+            if(this.est_bourre == 1){
+                serveur.parler("Désolé je ne peux plus te servir", this);
             }
             else{
                  if(this.sexe.sexe!=serveur.sexe.sexe && this.niveau_alcool/10>
@@ -255,6 +258,7 @@ public void commander(Boisson boisson, Serveur serveur){
                     /*Si le client et le serveur ont des sexes opposés et que le
                      rapport entre le niveau d'alccol et leur coefficient est de
                      10 il paie un verre*/
+                    this.parler("J'aimerai commander " + boisson.name,serveur);
                     this.paye(boisson);
                     serveur.commander(this,boisson);  
                     this.boire(boisson);
@@ -270,6 +274,8 @@ public void commander(Boisson boisson, Serveur serveur){
                                 serveur);
                     }
                     else{
+                        this.parler("J'aimerai commander " + 
+                                boisson.name,serveur);
                         this.paye(boisson);
                         serveur.commander(this,boisson);  
                         this.boire(boisson);
@@ -549,7 +555,7 @@ public void commander(Boisson boisson, Serveur serveur){
                 throw new Exception("Erreur: Vous n'avez pas assez d'argent");
             }
             else{
-                if(mon_Bar.nombre_Client>boisson.prix_vente){
+                if(mon_Bar.nombre_Client>boisson.nombre){
                     throw new Exception("Erreur: Il n'a pas assez de boisson");
                 }
                 else{
@@ -560,7 +566,7 @@ public void commander(Boisson boisson, Serveur serveur){
                         son ami*/
                         Client servi = (Client)mon_Bar.client.get(compteur); 
                         //On copie le client pour qu'il puisse crier
-                        servi.parler(crie);
+                        servi.parler(servi.crie);
                         mon_Bar.patron.parler(mon_Bar.patron.crie + " Les affaires reprennent");
                     }
                 }
