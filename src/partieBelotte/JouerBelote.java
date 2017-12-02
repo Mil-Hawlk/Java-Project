@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package partieBelotte;
 
 import java.io.File;
@@ -13,8 +8,10 @@ import java.io.FileWriter;
 
 
 /**
- *
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
  * @author david
+ * @version 1.0
  */
 public class JouerBelote {
     private int nbPointsPartie = 1000;
@@ -23,6 +20,14 @@ public class JouerBelote {
     private String nomJ3 = "Joueur 3";
     private String nomJ4 = "Joueur 4";
     
+    /**
+     *
+     * @param pNbPointsPartie
+     * @param pNomJ1
+     * @param pNomJ2
+     * @param pNomJ3
+     * @param pNomJ4
+     */
     public JouerBelote(int pNbPointsPartie, String pNomJ1, String pNomJ2,
             String pNomJ3, String pNomJ4)
     {
@@ -77,11 +82,11 @@ public class JouerBelote {
         Joueur[] listeJoueurs = {pJ1,pJ2,pJ3,pJ4};
         for(Joueur pJi : listeJoueurs)
         {
-            switch(pJi.donnerNumeroEquipe()){
-                case 0 : message += " le joueur "+pJi.donnerNomJoueur()+" a obtenu "+
+            switch(pJi.getNumeroEquipe()){
+                case 0 : message += " le joueur "+pJi.getNomJoueur()+" a obtenu "+
                         pManche.donnerScoreEquipe2()+" points avec son partenaire";
                         break;
-                case 1 : message += " le joueur "+pJi.donnerNomJoueur()+" a obtenu "+
+                case 1 : message += " le joueur "+pJi.getNomJoueur()+" a obtenu "+
                         pManche.donnerScoreEquipe1()+" points avec son partenaire";
                         break;
             }
@@ -105,6 +110,9 @@ public class JouerBelote {
         }
     }
     
+    /**
+     *
+     */
     public void afficherDernierePartieJouee()
     {
         File monFichier = new File("./src/partieBelotte/histoireParties.txt");

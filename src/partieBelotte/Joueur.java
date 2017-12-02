@@ -1,25 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package partieBelotte;
 
 import java.util.Random;
 
 /**
- *
+ * La classe Joueur comporte toutes les caractéristiques liées au joueur
+ * (Nom, cartes en main, numéro de joueur et d'équipe, score)
+ * @author pierre
  * @author david
+ * @version 1.0
  */
 public class Joueur {
+    /**
+     * Représente le nom du joueur
+     */
     private String nomDuJoueur;
+    /**
+     * Représente la main (= les cartes) du joueur
+     */
     private Carte mainDuJoueur[] = new Carte[8]; 
+    /**
+     * Id du joueur
+     */
     private  int numeroJoueur;
+    /**
+     * Score du joueur
+     */
     private int score = 0;
+    /**
+     * Id de l'équipe correspondant au joueur
+     */
     private int numeroEquipe;
+    /**
+     * Permet de créer l'ID du joueur quand il n'est pas renseigné
+     */
     private static int incrementJoueur = 0;
-    
-    /*Constructeur 3 : On a toutes les infos sur le joueur*/
+
+    /**
+     * Constructeur 3 : Cas où l'on a toutes les infos sur le joueur
+     * @param pNomDuJoueur son nom
+     * @param pNumeroJoueur son Id de joueur
+     * @param pScore son score
+     */
     protected Joueur(String pNomDuJoueur, int pNumeroJoueur, int pScore)
     {
         numeroJoueur = pNumeroJoueur;
@@ -28,15 +49,22 @@ public class Joueur {
         score = pScore;
     }
 
-    /*Constructeur 2 : On a le nom et le numéro du joueur*/
+    /**
+     * Constructeur 2 : Cas ou l'on a le nom et le numéro du joueur
+     * @param pNomDuJoueur son nom
+     * @param pNumeroJoueur son Id de joueur
+     */
     protected Joueur(String pNomDuJoueur, int pNumeroJoueur)
     {
         nomDuJoueur = pNomDuJoueur;
         numeroJoueur = pNumeroJoueur;
         numeroEquipe = numeroJoueur%2;
     }
-    
-    /*Constructeur 1: on n'a que le nom du joueur*/
+
+    /**
+     * Constructeur 1: Casou l'on n'a que le nom du joueur
+     * @param pNomDuJoueur nom du joueur
+     */
     protected Joueur(String pNomDuJoueur)
     {
         this.incrementJoueur++;
@@ -44,6 +72,14 @@ public class Joueur {
         numeroJoueur = incrementJoueur;
     }
     
+    /**
+     * Cette méthode permet de choisir les équipes de façon aléatoire
+     * Attention, elle n'est pas fonctionnelle, je crois...
+     * @param j1 joueur 1
+     * @param j2 joueur 2
+     * @param j3 joueur 3
+     * @param j4 joueur 4
+     */
     protected void tirageSortEquipes(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
     {
         int i=0;
@@ -64,44 +100,82 @@ public class Joueur {
         }
     }
     
+    /**
+     * La méthode changerScore ajoute le paramètre pScore au score du joueur
+     * Retourne un integer correspondant au nouveau score
+     * @param pScore score à ajouter
+     * @return nouveau score
+     */
     public int changerScore(int pScore)
     {
         score = score + pScore;
         return score;
     }
     
-    public int donnerScore()
+    /**
+     * getScore permet de retourner un entier correspondant au score du joueur
+     * @return score du joueur
+     */
+    public int getScore()
     {
         return score;
     }
     
-    public int donnerNumeroJoueur()
+    /**
+     * La méthode permet d'obtenir l'entier correspondant à l'Id du joueur
+     * @return Id du joueur
+     */
+    public int getNumeroJoueur()
     {
         return numeroJoueur;
     }
     
-    public String donnerNomJoueur()
+    /**
+     * La méthode permet d'obtenir le nom du joueur
+     * Retourne un objet String
+     * @return nom du joueur
+     */
+    public String getNomJoueur()
     {
         return nomDuJoueur;
     }
     
-    public int donnerNumeroEquipe()
+    /**
+     * La méthode permet d'obtenir le numéro de l'équipe du joueur
+     * Retourne un integer
+     * @return numéro d'équipe
+     */
+    public int getNumeroEquipe()
     {
         return numeroEquipe;
     }
     
-    protected void ajouterCarte(Carte carteAjout, int rang)
+    /**
+     * Permet de mettre une carte au rang "rang" dans la main du joueur
+     * @param carteAjout carte à ajouter
+     * @param rang rang souhaité pour la carte
+     */
+    protected void setCarte(Carte carteAjout, int rang)
     {
         mainDuJoueur[rang] = carteAjout;
     }
     
-    protected Carte jeterCarte(int rang)
+    /**
+     * Accesseur pour la main du joueur
+     * Retourne l'objet Carte situé au rang "rang"
+     * @param rang rang dans la main du joueur
+     * @return Carte qui s'y trouve (ou null si vide)
+     */
+    protected Carte getCarte(int rang)
     {
         Carte carteTransit = mainDuJoueur[rang];
         mainDuJoueur[rang] = null;
         return carteTransit;
     }
     
+    /**
+     * La méthode permet d'afficher le paquet de cartes d'un joueur
+     */
     protected void afficherPaquet()
     {
         for(int i=1;i<=8;i++)
@@ -115,6 +189,11 @@ public class Joueur {
         }
     }
     
+    /**
+     * Cette méthode permet de trier les cartes par couleur puis par valeur
+     * au sein de la main d'un joueur
+     * @param atout Couleur atout
+     */
     protected void triPaquetCartes(Couleur atout)
     {
         //1ere étape : On trie les cartes par couleurs, par ordre alphabétique
@@ -171,6 +250,11 @@ public class Joueur {
         }
     }
     
+    /**
+     * Calcul du nombre de cartes restantes dans la main du joueur
+     * Retourne un entier
+     * @return nombre de cartes
+     */
     protected int nombreCartesDansPaquet()
     {
         int nombreCartes = 0;
@@ -184,6 +268,11 @@ public class Joueur {
         return nombreCartes;
     }
     
+    /**
+     * La méthode teste si la carte à l'emplacement rang existe
+     * @param rang emplacement à tester
+     * @return vrai ou faux
+     */
     protected boolean estUneCarte(int rang)
     {
         if(mainDuJoueur[rang]!=null)

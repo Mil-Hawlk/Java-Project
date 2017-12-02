@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package partieBelotte;
 
 import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
  * @author david
+ * @version 1.0
  */
 public class Manche {
     private Joueur j1;
@@ -21,6 +18,13 @@ public class Manche {
     private int scoreEquipe1 = 0;
     private int scoreEquipe2 = 0;
     
+    /**
+     *
+     * @param pJ1
+     * @param pJ2
+     * @param pJ3
+     * @param pJ4
+     */
     protected Manche(Joueur pJ1, Joueur pJ2,
             Joueur pJ3, Joueur pJ4)
     {
@@ -32,6 +36,15 @@ public class Manche {
     
     /* La fonction jouerManche permet de lancer une manche de belotte. Elle 
     modifiera les scores de la manche de chaque joueur */
+
+    /**
+     *
+     * @param j1
+     * @param j2
+     * @param j3
+     * @param j4
+     */
+
     protected void jouerManche(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
     {
         JeuDeCartes monJeuDeCartes = new JeuDeCartes();
@@ -41,7 +54,7 @@ public class Manche {
         {
             monJeuDeCartes = this.donneCartes(monJeuDeCartes);
             // Pour le premier tour, l'atout est la couleur de la carte tournante
-            switch(monJeuDeCartes.donnerCouleurCarteTournante()){
+            switch(monJeuDeCartes.getCouleurCarteTournante()){
                 case "Carreau": atout = Couleur.Carreau;
                     break;
                 case "Coeur": atout = Couleur.Coeur;
@@ -94,15 +107,15 @@ public class Manche {
         // 1er tour de choix, avec l'atout qui est la carte au milieu
         for(Joueur ji : listeJoueurs)
         {
-            System.out.println("Voici votre jeu, "+ji.donnerNomJoueur());
+            System.out.println("Voici votre jeu, "+ji.getNomJoueur());
             ji.afficherPaquet();
-            System.out.println(ji.donnerNomJoueur()+" voulez-vous prendre en "+
+            System.out.println(ji.getNomJoueur()+" voulez-vous prendre en "+
                     atout.getCouleur()+" ? (y/n)");
             choixHumain = sc.nextLine();
             if(choixHumain.compareTo("y")==0)
             {
-                quiPrend = ji.donnerNumeroJoueur();
-                System.out.println(ji.donnerNomJoueur()+" décide de prendre en "
+                quiPrend = ji.getNumeroJoueur();
+                System.out.println(ji.getNomJoueur()+" décide de prendre en "
                 +atout.getCouleur());
                 return quiPrend;
             }
@@ -110,12 +123,12 @@ public class Manche {
         // 2e tour de choix
         for(Joueur ji : listeJoueurs)
         {
-            System.out.println(ji.donnerNomJoueur()+
+            System.out.println(ji.getNomJoueur()+
                     ", voulez-vous prendre dans une autre couleur ? (y/n)");
             choixHumain = sc.nextLine();
             if(choixHumain.compareTo("y")==0)
             {
-                quiPrend = ji.donnerNumeroJoueur();
+                quiPrend = ji.getNumeroJoueur();
                 System.out.println("Quelle couleur souhaitez-vous choisir ?");
                 System.out.println("1: Carreau\n2: Coeur\n3: Pique\n4: Trèfle");
                 choixHumain = sc.nextLine();
@@ -125,7 +138,7 @@ public class Manche {
                     case "3" : atout = Couleur.Pique; break;
                     case "4" : atout = Couleur.Trefle; break;
                 }
-                System.out.println(ji.donnerNomJoueur()+"décide de prendre en "
+                System.out.println(ji.getNomJoueur()+"décide de prendre en "
                 +atout.getCouleur());
                 return quiPrend;
             }
@@ -155,14 +168,14 @@ public class Manche {
         {
             for(Joueur ji : listeJoueurs)
             {
-                if(pJoueurQuiCommence==ji.donnerNumeroJoueur())
+                if(pJoueurQuiCommence==ji.getNumeroJoueur())
                 {
                     tourDeJeu[i] = this.choisirUneCarte(ji,i,tourDeJeu);
                     while(tourDeJeu[i]==null) // Si les règles ne passent pas
                     {
                         tourDeJeu[i] = this.choisirUneCarte(ji,i,tourDeJeu);
                     }
-                    System.out.println(ji.donnerNomJoueur()+" joue son "+
+                    System.out.println(ji.getNomJoueur()+" joue son "+
                            tourDeJeu[i].getFigure()+" de "
                             +tourDeJeu[i].getCouleur()+"\n");
                 }
@@ -183,16 +196,16 @@ public class Manche {
     {
         switch (tourDuJoueur)
         {
-            case 0: System.out.println(pJoueur.donnerNomJoueur()+
+            case 0: System.out.println(pJoueur.getNomJoueur()+
                     ", tu est le premier à jouer !");
                     break;
-            case 1: System.out.println(pJoueur.donnerNomJoueur()+
+            case 1: System.out.println(pJoueur.getNomJoueur()+
                     ", tu est le deuxieme à jouer !");
                     break;
-            case 2: System.out.println(pJoueur.donnerNomJoueur()+
+            case 2: System.out.println(pJoueur.getNomJoueur()+
                     ", tu est le troisième à jouer !");
                     break;
-            case 3: System.out.println(pJoueur.donnerNomJoueur()+
+            case 3: System.out.println(pJoueur.getNomJoueur()+
                     ", tu est le quatrième à jouer !");
                     break;
         }
@@ -224,14 +237,14 @@ public class Manche {
                 default: break;
             }
         try{
-            Carte etapeVerifCarte = pJoueur.jeterCarte(choixHumainInteger);
+            Carte etapeVerifCarte = pJoueur.getCarte(choixHumainInteger);
             if(this.verificationReglesCarte(etapeVerifCarte, pJoueur, pTapis))
             {
                 return etapeVerifCarte;
             }
             else
             {
-                pJoueur.ajouterCarte(etapeVerifCarte, choixHumainInteger);
+                pJoueur.setCarte(etapeVerifCarte, choixHumainInteger);
                 return null;
             }
         }
@@ -247,14 +260,14 @@ public class Manche {
                     valid=true;
                 }
             }
-            Carte etapeVerifCarte = pJoueur.jeterCarte(choixHumainInteger);
+            Carte etapeVerifCarte = pJoueur.getCarte(choixHumainInteger);
             if(this.verificationReglesCarte(etapeVerifCarte, pJoueur, pTapis))
             {
                 return etapeVerifCarte;
             }
             else
             {
-                pJoueur.ajouterCarte(etapeVerifCarte, choixHumainInteger);
+                pJoueur.setCarte(etapeVerifCarte, choixHumainInteger);
                 return null;
             }
         }
@@ -273,7 +286,7 @@ public class Manche {
                 {//si on ne joue pas atout
                     for(int i=0; i<8; i++) 
                     {// On vérifie qu'aucune des cartes n'est atout ou couleur maître
-                        verification = pJoueur.jeterCarte(i);
+                        verification = pJoueur.getCarte(i);
                         if(verification==null)
                         {
                             compteurMainVide += 1;
@@ -291,7 +304,7 @@ public class Manche {
                                 resultat = false;
                             }
                         }
-                        pJoueur.ajouterCarte(verification, i);
+                        pJoueur.setCarte(verification, i);
                     }
                 }
             }
@@ -372,10 +385,10 @@ public class Manche {
         Joueur[] listeJoueurs = {j1,j2,j3,j4};
         for(Joueur ji : listeJoueurs)
         {
-            if(pRangGagnant == ji.donnerNumeroJoueur())
+            if(pRangGagnant == ji.getNumeroJoueur())
             {
                 ji.changerScore(pNbPoints);
-                System.out.println(ji.donnerNomJoueur()+" a rapporté "+
+                System.out.println(ji.getNomJoueur()+" a rapporté "+
                         pNbPoints+" à son équipe !");
             }
         }
@@ -398,29 +411,32 @@ public class Manche {
         return totalPoints;
     }
     
+    /**
+     *
+     */
     public void afficherScoreEquipes()
     {
         int score = 0;
-        if(j1.donnerNumeroEquipe()==j2.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j2.getNumeroEquipe())
         {
-            System.out.println("Score de l'équipe de "+j1.donnerNomJoueur()+
-                    " et de "+j2.donnerNomJoueur()+" : "+scoreEquipe1);
-            System.out.println("Score de l'équipe de "+j3.donnerNomJoueur()+
-                    " et de "+j4.donnerNomJoueur()+" : "+scoreEquipe2);
+            System.out.println("Score de l'équipe de "+j1.getNomJoueur()+
+                    " et de "+j2.getNomJoueur()+" : "+scoreEquipe1);
+            System.out.println("Score de l'équipe de "+j3.getNomJoueur()+
+                    " et de "+j4.getNomJoueur()+" : "+scoreEquipe2);
         }
-        if(j1.donnerNumeroEquipe()==j3.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j3.getNumeroEquipe())
         {
-            System.out.println("Score de l'équipe de "+j1.donnerNomJoueur()+
-                    " et de "+j3.donnerNomJoueur()+" : "+scoreEquipe1);
-            System.out.println("Score de l'équipe de "+j2.donnerNomJoueur()+
-                    " et de "+j4.donnerNomJoueur()+" : "+scoreEquipe2);
+            System.out.println("Score de l'équipe de "+j1.getNomJoueur()+
+                    " et de "+j3.getNomJoueur()+" : "+scoreEquipe1);
+            System.out.println("Score de l'équipe de "+j2.getNomJoueur()+
+                    " et de "+j4.getNomJoueur()+" : "+scoreEquipe2);
         }
-        if(j1.donnerNumeroEquipe()==j4.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j4.getNumeroEquipe())
         {
-            System.out.println("Score de l'équipe de "+j1.donnerNomJoueur()+
-                    " et de "+j4.donnerNomJoueur()+" : "+scoreEquipe1);
-            System.out.println("Score de l'équipe de "+j3.donnerNomJoueur()+
-                    " et de "+j2.donnerNomJoueur()+" : "+scoreEquipe2);
+            System.out.println("Score de l'équipe de "+j1.getNomJoueur()+
+                    " et de "+j4.getNomJoueur()+" : "+scoreEquipe1);
+            System.out.println("Score de l'équipe de "+j3.getNomJoueur()+
+                    " et de "+j2.getNomJoueur()+" : "+scoreEquipe2);
         }
     }
     
@@ -428,11 +444,11 @@ public class Manche {
     {
         int score1 = 0;
         int score2 = 0;
-        if(j1.donnerNumeroEquipe()==j2.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j2.getNumeroEquipe())
         {
             //On additionne les scores des joueurs
-            score1 = j1.donnerScore() + j2.donnerScore();
-            score2 = j3.donnerScore() + j4.donnerScore();
+            score1 = j1.getScore() + j2.getScore();
+            score2 = j3.getScore() + j4.getScore();
             //Règle du KAPO
             if(score1==0)
             {
@@ -445,16 +461,16 @@ public class Manche {
                 score1 = 252;
             }
             // On vérifie que le preneur n'est pas dedans
-            if((pJoueurQuiPrend==j1.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j2.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j1.getNumeroEquipe()
+                ||pJoueurQuiPrend==j2.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=0;
                 score2=162;
                 System.out.println("Equipe 1 dedans !!");
             }
-            if((pJoueurQuiPrend==j3.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j4.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j3.getNumeroEquipe()
+                ||pJoueurQuiPrend==j4.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=162;
@@ -462,10 +478,10 @@ public class Manche {
                 System.out.println("Equipe 2 dedans !!");
             }
         }
-        if(j1.donnerNumeroEquipe()==j3.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j3.getNumeroEquipe())
         {
-            score1 = j1.donnerScore() + j3.donnerScore();
-            score2 = j2.donnerScore() + j4.donnerScore();
+            score1 = j1.getScore() + j3.getScore();
+            score2 = j2.getScore() + j4.getScore();
             //Règle du KAPO
             if(score1==0)
             {
@@ -477,16 +493,16 @@ public class Manche {
                 System.out.println("Kapo équipe 2 !!");
                 score1 = 252;
             }
-            if((pJoueurQuiPrend==j1.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j3.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j1.getNumeroEquipe()
+                ||pJoueurQuiPrend==j3.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=0;
                 score2=162;
                 System.out.println("Equipe 1 dedans !!");
             }
-            if((pJoueurQuiPrend==j2.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j4.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j2.getNumeroEquipe()
+                ||pJoueurQuiPrend==j4.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=162;
@@ -494,10 +510,10 @@ public class Manche {
                 System.out.println("Equipe 2 dedans !!");
             }
         }
-        if(j1.donnerNumeroEquipe()==j4.donnerNumeroEquipe())
+        if(j1.getNumeroEquipe()==j4.getNumeroEquipe())
         {
-            score1 = j1.donnerScore() + j4.donnerScore();
-            score2 = j3.donnerScore() + j2.donnerScore();
+            score1 = j1.getScore() + j4.getScore();
+            score2 = j3.getScore() + j2.getScore();
             //Règle du KAPO
             if(score1==0)
             {
@@ -509,16 +525,16 @@ public class Manche {
                 System.out.println("Kapo équipe 2 !!");
                 score1 = 252;
             }
-            if((pJoueurQuiPrend==j1.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j4.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j1.getNumeroEquipe()
+                ||pJoueurQuiPrend==j4.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=0;
                 score2=162;
                 System.out.println("Equipe 1 dedans !!");
             }
-            if((pJoueurQuiPrend==j2.donnerNumeroEquipe()
-                ||pJoueurQuiPrend==j3.donnerNumeroEquipe())
+            if((pJoueurQuiPrend==j2.getNumeroEquipe()
+                ||pJoueurQuiPrend==j3.getNumeroEquipe())
                 &&(score1<82))
             {
                 score1=162;
@@ -532,10 +548,10 @@ public class Manche {
     
     private void mettreAZeroScoresJoueurs()
     {
-        j1.changerScore(-j1.donnerScore());
-        j2.changerScore(-j2.donnerScore());
-        j3.changerScore(-j3.donnerScore());
-        j4.changerScore(-j4.donnerScore());
+        j1.changerScore(-j1.getScore());
+        j2.changerScore(-j2.getScore());
+        j3.changerScore(-j3.getScore());
+        j4.changerScore(-j4.getScore());
     }
     
     private int checkAnnonce(Joueur pJoueur)
@@ -544,11 +560,19 @@ public class Manche {
         return 0;
     }
     
+    /**
+     *
+     * @return
+     */
     public int donnerScoreEquipe1()
     {
         return scoreEquipe1;
     }
     
+    /**
+     *
+     * @return
+     */
     public int donnerScoreEquipe2()
     {
         return scoreEquipe2;

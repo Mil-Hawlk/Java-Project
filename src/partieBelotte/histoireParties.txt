@@ -28,3 +28,9 @@ Lors de la partie,
  le joueur Patrick a obtenu 89 points avec son partenaire
  le joueur André a obtenu 73 points avec son partenaire
 
+Lors de la partie, 
+ le joueur Luc a obtenu 132 points avec son partenaire
+ le joueur Jean a obtenu 30 points avec son partenaire
+ le joueur Patrick a obtenu 132 points avec son partenaire
+ le joueur André a obtenu 30 points avec son partenaire
+
