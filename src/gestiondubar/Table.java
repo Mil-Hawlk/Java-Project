@@ -6,8 +6,10 @@
 package gestiondubar;
 
 /**
- *
- * @author pierr
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
+ * @author david
+ * @version 1.0
  */
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +18,12 @@ public class Table {
     protected int place = 4;
     protected List client = new LinkedList();
     
+    /**
+     * @exception Exception
+     */
     public void lancee_belote(){
+        /*Fonction permettant de lancer une partie de belote, exception s'il
+        manque de joueurs*/
         try{
             if(this.place!=0){
                 throw new Exception("Erreur: Il manque de joueur(s)");
@@ -30,7 +37,13 @@ public class Table {
         }
     }
     
+    /**
+     * 
+     * @param 
+     * @exception Exception
+     */
     public void quitter(Client pclient){
+        /*Fonction permettant à un client de quitter la table*/
         try{
             int compteur=0;
             while(compteur<this.client.size() && 
@@ -43,8 +56,8 @@ public class Table {
                     this.place++;
                 }
                 else{
-                throw new Exception("Erreur: Le client n'est pas présent dans "
-                        + "le bar"); 
+                throw new Exception("Erreur: Le client n'est pas présent sur" 
+                        + "la table"); 
                 }
         } 
         catch(Exception e){

@@ -121,7 +121,8 @@ public class Test {
         /*Définition des boissons*/
         Boisson cuvee = new Boisson("Cuvée des Troll",10,8,2,5); /* Cuvée des trolls*50 à 8.7° acheté 2€ et revendu 5€*/
         Boisson vodka = new Boisson("Vodka", 2 , 40, 3,7);
-        Boisson[] boissons = {vodka,cuvee};
+        Boisson coca = new Boisson("coca-cola", 50, 0, 2,4);
+        Boisson[] boissons = {vodka,cuvee,coca};
         
         /* Création des tables*/
         Table jaune = new Table();
@@ -171,5 +172,6 @@ public class Test {
         System.out.println("Il reste" + cuvee.nombre + " cuvee");
         System.out.println("David argent: " + david.porte_monnaie);
         david.tournee_generale(mon_Bar, cuvee); /* Erreur il n'a pas assez d'argent*/
+        kilianette.offrir_Verre(anthony, coca);
     }
 }

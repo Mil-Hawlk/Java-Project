@@ -29,7 +29,7 @@ public class Barman extends Humain implements Tournee_generale{
         /*Constructeur permettant de créer un barman*/
         super(cprenom,csurnom,cporte_monnaie,ccrie);
         this.patron=ppatron;
-        parler("Je suis le nouveau barman " + this.obtenir_Prenom());
+        parler("Je suis le nouveau barman " + this.getPrenom());
     }
     
      /**
@@ -53,7 +53,7 @@ public class Barman extends Humain implements Tournee_generale{
     {
         /*Fonction permettant de passer une commande de boissons au fournisseur
         */
-        parler("Salut mon cher "+pnomFournisseur.nomFournisseur+", Je voudrais "
+        parler("Salut mon cher "+pnomFournisseur.getPrenom()+", Je voudrais "
                 + "te commander "+pquantite+pboisson.name+" pour le bar "
                 +pnomBar.name+" , merci !");
         pnomFournisseur.recevoirCommandeEtFacturer(pboisson,pquantite,pnomBar);
@@ -66,7 +66,7 @@ public class Barman extends Humain implements Tournee_generale{
      */
     protected void servir_Boisson(Boisson boisson, Serveur serveur){
         /*Fonction permettant de servir une boisson à un serveur*/
-        parler("Rapporte ça au client s'il te plait " + serveur.obtenir_Surnom()
+        parler("Rapporte ça au client s'il te plait " + serveur.getSurnom()
         );
         boisson.nombre-=1; // le nombre de boissons du stock diminue
         caisse+=boisson.prix_vente; // la caisse augmente du prix des boissons
@@ -93,7 +93,7 @@ public class Barman extends Humain implements Tournee_generale{
      */
     protected void servir_Boisson(Boisson boisson, Patron patron){
         /*Fonction permettant de servir une boissonau patron*/
-        parler("Voici ton verre " + patron.obtenir_Prenom());
+        parler("Voici ton verre " + patron.getPrenom());
         boisson.nombre-=1; // la patronne ne paie pas, juste la boisson diminue
     }
     
@@ -115,7 +115,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     
@@ -161,6 +161,8 @@ public class Barman extends Humain implements Tournee_generale{
                     throw new Exception("Erreur: Il n'a plus cette boisson");
                 }
                 else{
+                    camarade.cote_popularite-=100;
+                    super.offrir_Verre(camarade);
                     this.parler("Tiens mon Loulou, je t'offre " + boisson.name, 
                         camarade);
                     this.servir_Boisson(boisson,camarade); 
@@ -171,7 +173,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     
@@ -210,7 +212,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     
@@ -254,7 +256,7 @@ public class Barman extends Humain implements Tournee_generale{
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
        

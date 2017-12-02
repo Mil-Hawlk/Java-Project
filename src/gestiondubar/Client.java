@@ -58,6 +58,10 @@ public class Client extends Humain implements Tournee_generale {
         }
     }   
     
+    public int getNiveauAlcool(){
+        return(this.niveau_alcool);
+    }
+    
     /**
      * 
      * @param new_attribut 
@@ -128,7 +132,7 @@ public class Client extends Humain implements Tournee_generale {
      * @exception Exception
      */
     
-    public void se_Faire_Offrir(Humain camarade, Barman barman){  
+    public void se_Faire_Offrir(Client camarade, Barman barman){  
         /*Fonction permetant de se faire offrir un verre en demandant à un ami, 
         exception si le client n'est pas dans le bar*/
         try{
@@ -231,15 +235,16 @@ public void commander(Boisson boisson, Serveur serveur){
         le client n'est pas à l'interieur ou s'il n'a pas assez d'argent ou s'il
         n'a plus assez de cette boisson*/
         try{
-            while(this.est_interieur==0){
+            if(this.est_interieur==0){
                 throw new Exception("Erreur: Vous n'êtes pas à l'interieur");
             }
-            while(this.porte_monnaie<boisson.prix_vente){
+            if(this.porte_monnaie<boisson.prix_vente){
                 throw new Exception("Erreur: Vous n'avez pas assez d'argent");
             }
-            while(boisson.nombre<1){
+            if(boisson.nombre<1){
                 throw new Exception("Erreur: Il n'a plus assez de boisson");
-            }                /*Si le client est bourre il ne peut pas le servir*/
+            }                /*Si le client est bourre il ne peut pas le servir
+            */
 
             if(this.est_bourre==0){
                 serveur.parler("Décolé je ne peux plus te servir", this);
@@ -281,11 +286,20 @@ public void commander(Boisson boisson, Serveur serveur){
      * 
      * @param mon_Bar 
      */
-        public void quitter_Bar(Bar mon_Bar){
-            /*Fonction qui permet de quitter le bar*/
-            mon_Bar.client_virer(this);
-        }
-    
+    public void quitter_Bar(Bar mon_Bar){
+        /*Fonction qui permet de quitter le bar*/
+        mon_Bar.client_virer(this);
+    }
+
+    /**
+     * 
+     * @param mon_Bar 
+     */
+    public void entrer_bar(Bar mon_Bar){
+        /*Fonction qui permet de rentrer dans le bar*/
+        mon_Bar.ajouter_client(this);
+    }
+
     /**
      * 
      */
@@ -325,7 +339,6 @@ public void commander(Boisson boisson, Serveur serveur){
      * @param barman 
      * @exception Exception
      */
-    @Override
     public void offrir_Verre(Humain camarade, Boisson boisson, Barman barman){
         /*Fonction pour offrir un verre à un ami en demandant au barman, 
         exception s'il n'est pas dans le bar ou s'il n'a pas asez d'argent ou 
@@ -351,9 +364,9 @@ public void commander(Boisson boisson, Serveur serveur){
                             }
                             else{
                                 parler("J'aimerai commander " + boisson.name +
-                                        " pour " + camarade.obtenir_Prenom(), 
+                                        " pour " + camarade.getPrenom(), 
                                         barman);    
-                                super.offrir_Verre(camarade, boisson, barman);
+                                super.offrir_Verre(camarade);
                                 this.paye(boisson);
                                 barman.servir_Boisson(boisson,this);
                                 camarade.parler("Merci beaucoup", this);
@@ -375,7 +388,6 @@ public void commander(Boisson boisson, Serveur serveur){
      * @param serveur 
      * @exception Exception
      */
-    @Override
     public void offrir_Verre(Humain camarade, Boisson boisson, Serveur serveur){
         /*Fonction qui permet d'offrir un verre en demandant au serveur, tres 
         ressemblante àn celle précédemment */
@@ -404,8 +416,7 @@ public void commander(Boisson boisson, Serveur serveur){
                                 else{
                                     parler("J'aimerai commander " + 
                                             boisson.name, serveur);    
-                                    super.offrir_Verre(camarade, boisson , 
-                                            serveur);
+                                    super.offrir_Verre(camarade);
                                     this.paye(boisson);
                                     serveur.commander(this,boisson);
                                     camarade.parler("Merci beaucoup", this);
@@ -428,7 +439,6 @@ public void commander(Boisson boisson, Serveur serveur){
      * @param boisson 
      * @exception Exception
      */
-    @Override
     public void offrir_Verre (Barman barman, Boisson boisson){
         /*Fonction permettant d'offrir un verre au Barman, exception si le 
         client n'est pas à l'interieur ou s'il n'a pas assez d'argent ou s'il 
@@ -455,7 +465,8 @@ public void commander(Boisson boisson, Serveur serveur){
                             else {
                             parler("J'aimerai commander " + boisson.name + 
                                     " mon pote");
-                            super.offrir_Verre(barman, boisson);
+                            super.offrir_Verre(barman);
+                            super.offrir_Verre(barman);
                             this.paye(boisson);
                             barman.servir_Boisson(boisson, this);
                             this.parler("Vas-y je t'en pris c'est pour toi", 
@@ -478,7 +489,6 @@ public void commander(Boisson boisson, Serveur serveur){
      * @param boisson 
      * @exception Exception
      */
-    @Override
     public void offrir_Verre (Serveur serveur, Boisson boisson){
         /*Fonction permettant d'offrir un Verre au serveur, identique à celle 
         pour offrir un verre au barman*/
@@ -502,7 +512,7 @@ public void commander(Boisson boisson, Serveur serveur){
                                         + "alcoolisée");
                             }
                             else {
-                            super.offrir_Verre(serveur, boisson);
+                            super.offrir_Verre(serveur);
                             parler("J'aimerai commander " + boisson.name 
                                     +" mon pote");
                             this.paye(boisson);
@@ -608,7 +618,7 @@ public void commander(Boisson boisson, Serveur serveur){
                 }
                 else{
                     this.est_Attablé = true; 
-                table.quitter(this); /*fonctio qui permet de quitter la table*/
+                table.quitter(this); /*fonction qui permet de quitter la table*/
                 table.place++;
                 }  
             }

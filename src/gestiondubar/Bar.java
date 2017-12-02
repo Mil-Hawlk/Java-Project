@@ -51,13 +51,13 @@ public class Bar {
         this.patron=ppatron;
         this.barman=pbarman;
         this.table=tables;
-        this.name="Chez" + this.patron.obtenir_Surnom();
+        this.name="Chez" + this.patron.getPrenom();
         this.impossible = false;
         System.out.println("Ouverture du Bar " + this.name);         
             }
         }
         catch(Exception e){
-        System.out.println(e.getMessage());
+        System.err.println(e.getMessage());
         }
     }
     
@@ -78,12 +78,12 @@ public class Bar {
                     for(int compteur= 0; compteur<this.client.size(); 
                             compteur++){
                         Client present = (Client)this.client.get(compteur);
-                        System.out.println(present.obtenir_Prenom());
+                        System.out.println(present.getPrenom());
                     }
             }
         }
         catch(Exception e ){
-        System.out.println(e.getMessage());
+        System.err.println(e.getMessage());
         }
     }
     
@@ -120,7 +120,7 @@ public class Bar {
                 }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     
@@ -131,7 +131,7 @@ public class Bar {
      * @exception Exception
      * @exception Exception
      */
-    public void ajouter_client(Client pclient){
+    protected void ajouter_client(Client pclient){
         /*Fonction utilisant la liste chainée des clients afin d'ajouter un 
         client, exception si le bar ne peut pas ouvrir ou si le client n'est ni
         un homme ni une femme ou s'il est deja présent dans le bar*/
@@ -155,15 +155,15 @@ public class Bar {
                         pclient.est_interieur=1;
                         this.nombre_Client +=1;
                         client.add(pclient);
-                        System.out.println(pclient.obtenir_Prenom() + " dit le "
-                                + pclient.obtenir_Surnom() + 
+                        System.out.println(pclient.getPrenom() + " dit le "
+                                + pclient.getPrenom() + 
                                 " rentre dans le bar");
                     }
                 }
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } 
     }
     

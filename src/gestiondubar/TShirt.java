@@ -6,8 +6,10 @@
 package gestiondubar;
 
 /**
- *
- * @author pierr
+ * Here is a JavaDoc comment in plain HTML for a class 
+ * @author pierre
+ * @author david
+ * @version 1.0
  */
 public enum TShirt {
     rouge,
