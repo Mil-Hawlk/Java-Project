@@ -34,3 +34,51 @@ Lors de la partie,
  le joueur Patrick a obtenu 132 points avec son partenaire
  le joueur André a obtenu 30 points avec son partenaire
 
+Lors de la partie, 
+ le joueur Kilian a obtenu 121 points avec son partenaire
+ le joueur Anais a obtenu 41 points avec son partenaire
+ le joueur Agathe a obtenu 121 points avec son partenaire
+ le joueur David a obtenu 41 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 252 points avec son partenaire
+ le joueur Anais a obtenu 0 points avec son partenaire
+ le joueur Agathe a obtenu 252 points avec son partenaire
+ le joueur David a obtenu 0 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 106 points avec son partenaire
+ le joueur Anais a obtenu 56 points avec son partenaire
+ le joueur Agathe a obtenu 106 points avec son partenaire
+ le joueur David a obtenu 56 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 0 points avec son partenaire
+ le joueur Anais a obtenu 162 points avec son partenaire
+ le joueur Agathe a obtenu 0 points avec son partenaire
+ le joueur David a obtenu 162 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 87 points avec son partenaire
+ le joueur Anais a obtenu 237 points avec son partenaire
+ le joueur Agathe a obtenu 87 points avec son partenaire
+ le joueur David a obtenu 237 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 191 points avec son partenaire
+ le joueur Anais a obtenu 295 points avec son partenaire
+ le joueur Agathe a obtenu 191 points avec son partenaire
+ le joueur David a obtenu 295 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 237 points avec son partenaire
+ le joueur Anais a obtenu 411 points avec son partenaire
+ le joueur Agathe a obtenu 237 points avec son partenaire
+ le joueur David a obtenu 411 points avec son partenaire
+
+Lors de la partie, 
+ le joueur Kilian a obtenu 295 points avec son partenaire
+ le joueur Anais a obtenu 515 points avec son partenaire
+ le joueur Agathe a obtenu 295 points avec son partenaire
+ le joueur David a obtenu 515 points avec son partenaire
+

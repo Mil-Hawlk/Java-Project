@@ -35,9 +35,11 @@ public class Table {
                 Client joueur2 = (Client)client.get(1);
                 Client joueur3 = (Client)client.get(2);
                 Client joueur4 = (Client)client.get(3);
-                JouerBelote maPartie = new JouerBelote(81,joueur1.getPrenom(),
+                JouerBelote maPartie = new JouerBelote(501,joueur1.getPrenom(),
                         joueur2.getPrenom(),joueur3.getPrenom(),
                         joueur4.getPrenom());
+                System.out.println("Resultats de la dernière partie : \n");
+                maPartie.afficherDerniereMancheJouee();
             }
         }
         catch(Exception e){
