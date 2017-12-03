@@ -32,22 +32,22 @@ public enum CarteValeur {
     /**
      * La figure 10, de valeur 10 en atout et non-atout
      */
-    dix("10",10,10),
+    Dix("10",10,10),
 
     /**
      * La figure 9, de valeur 14 en atout et 0 en non-atout
      */
-    neuf("9",0,14),
+    Neuf("9",0,14),
 
     /**
      * La figure 8, de valeur 0 en atout et non-atout
      */
-    huit("8",0,0),
+    Huit("8",0,0),
 
     /**
      * La figure 7, de valeur 0 en atout et non-atout
      */
-    sept("7",0,0);
+    Sept("7",0,0);
     
     /**
      * Représente le nom de la figure

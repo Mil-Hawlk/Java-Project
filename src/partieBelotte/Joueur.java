@@ -33,7 +33,7 @@ public class Joueur {
     /**
      * Permet de créer l'ID du joueur quand il n'est pas renseigné
      */
-    private static int incrementJoueur = 0;
+    private static int INCREMENTJOUEUR = 0;
 
     /**
      * Constructeur 3 : Cas où l'on a toutes les infos sur le joueur
@@ -67,9 +67,9 @@ public class Joueur {
      */
     protected Joueur(String pNomDuJoueur)
     {
-        this.incrementJoueur++;
+        this.INCREMENTJOUEUR++;
         nomDuJoueur = pNomDuJoueur;
-        numeroJoueur = incrementJoueur;
+        numeroJoueur = INCREMENTJOUEUR;
     }
     
     /**
@@ -197,7 +197,7 @@ public class Joueur {
     protected void triPaquetCartes(Couleur atout)
     {
         //1ere étape : On trie les cartes par couleurs, par ordre alphabétique
-        Carte cartePivot = new Carte(CarteValeur.sept,Couleur.Coeur);
+        Carte cartePivot = new Carte(CarteValeur.Sept,Couleur.Coeur);
         int rangPivot;
         int i;
         //On va comparer les 7 premières cartes avec chacunes des suivantes

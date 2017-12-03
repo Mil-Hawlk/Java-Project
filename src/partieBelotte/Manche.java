@@ -400,7 +400,7 @@ public class Manche {
     {
         int i = 0;
         int rangCarteForte = 0;
-        CarteValeur valeurCarteForte = CarteValeur.sept;
+        CarteValeur valeurCarteForte = CarteValeur.Sept;
         boolean victory = false;
         // Calcul de la carte gagnante
         /* Premier cas de figure : Il y a un atout */
