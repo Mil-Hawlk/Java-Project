@@ -4,26 +4,52 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Here is a JavaDoc comment in plain HTML for a class 
+ * La classe Manche représente une manche de belotte, c'est à dire
+ * la distribution des 32 cartes, le choix d'une couleur atout,
+ * les 8 plis consécutifs régis par les règles du jeu, l'attribution
+ * de points en fonction des plis ramassés par les joueurs, et enfin le total
+ * des scores de chacune des deux équipes
  * @author pierre
  * @author david
  * @version 1.0
  */
 public class Manche {
+    /**
+     * Contient les informations pour le joueur 1
+     */
     private Joueur j1;
+    /**
+     * Contient les informations pour le joueur 2
+     */
     private Joueur j2;
+    /**
+     * Contient les informations pour le joueur 3
+     */
     private Joueur j3;
+    /**
+     * Contient les informations pour le joueur 4
+     */
     private Joueur j4;
+    /**
+     * Contient l'information sur la couleur atout. Elle ne change plus
+     * une fois qu'un joueur a pris, et est la même pendant toute la manche
+     */
     private Couleur atout;
+    /**
+     * Score de l'équipe 1 pour la manche
+     */
     private int scoreEquipe1 = 0;
+    /**
+     * Score de l'équipe 2 pour la manche
+     */
     private int scoreEquipe2 = 0;
     
     /**
-     *
-     * @param pJ1
-     * @param pJ2
-     * @param pJ3
-     * @param pJ4
+     * On construit un objet Manche à partir de 4 joueurs
+     * @param pJ1 Joueur 1
+     * @param pJ2 Joueur 2
+     * @param pJ3 Joueur 3
+     * @param pJ4 Joueur 4
      */
     protected Manche(Joueur pJ1, Joueur pJ2,
             Joueur pJ3, Joueur pJ4)
@@ -34,17 +60,15 @@ public class Manche {
         j4 = pJ4;
     }
     
-    /* La fonction jouerManche permet de lancer une manche de belotte. Elle 
-    modifiera les scores de la manche de chaque joueur */
 
     /**
-     *
-     * @param j1
-     * @param j2
-     * @param j3
-     * @param j4
+     * La fonction jouerManche permet de lancer une manche de belotte. Elle
+     * modifiera les scores de la manche de chaque joueur en fonction du jeu
+     * @param j1 joueur 1
+     * @param j2 joueur 2
+     * @param j3 joueur 3
+     * @param j4 joueur 4
      */
-
     protected void jouerManche(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
     {
         JeuDeCartes monJeuDeCartes = new JeuDeCartes();
@@ -86,6 +110,15 @@ public class Manche {
         this.mettreAZeroScoresJoueurs();
     }
     
+    /**
+     * La méthode donneCarte effectue une suite d'opérations sur le jeu
+     * de cartes initial. Avant le lancement d'une nouvelle manche,
+     * le jeu est ainsi mélangé, coupé, et on effectue la première distribution
+     * de 5 cartes pour chacun des joueurs. Enfin, on affiche la carte tournante,
+     * qui va orienter le choix des joueurs en début de partie
+     * @param pMonJeuDeCartes Le jeu de cartes qui vient d'être initialisé
+     * @return Le jeu de Carte ayant subi ces modifications
+     */
     private JeuDeCartes donneCartes(JeuDeCartes pMonJeuDeCartes)
     {
         // On commence par mélanger, couper puis donner 5 cartes pour les 4 joueurs
@@ -97,6 +130,17 @@ public class Manche {
         return pMonJeuDeCartes;
     }
     
+    /**
+     * La méthode decisionQuiPrend met en scène les 4 joueurs autour de la table.
+     * Le joueur pQuiCommence démarre le premier tour de choix. Chaque joueur
+     * doit tour à tour choisir s'il décide de prendre la main avec l'atout
+     * étant la couleur de la carte tournante. Si personne ne prend, un deuxième
+     * tour a lieu, ou chaque joueur peut choisir de prendre la main dans la 
+     * couleur de son choix
+     * Retourne l'ID du joueur ayant pris, et change la couleur atout si besoin
+     * @param pQuiCommence Le joueur qui choisit en premier
+     * @return Id du joueur qui a pris
+     */
     private int decisionQuiPrend(int pQuiCommence)
     {
         int quiPrend = 0;
@@ -155,9 +199,16 @@ public class Manche {
         return -1;
     }
     
-    /* La fonction jouer un pli permettra de jouer un pli, sachant quel est l'atout
-    et quelles sont les cartes jetées par les js. (Sortie relative au joueur qui commence, 
-    score positif si victoire de son équipe, score négatif sinon?)*/
+    /**
+     * La méthode jouerpli permet de jouer un pli, sachant quel est
+     * l'atout, quelles sont les cartes jetées par les joueurs, et quel est
+     * le numéro du pli (compris entre 0 et 7), qui sert à l'arbitrage
+     * La fonction retourne le Joueur qui a gagné le pli, et donc le Joueur qui
+     * va démarrer le pli suivant
+     * @param pJoueurQuiCommence Le joueur qui doit jeter sa carte en premier
+     * @param pNumeroPli Numéro du pli en cours
+     * @return Prochain joueur à démarrer / joueur ayant gagné
+     */
     private int jouerPli(int pJoueurQuiCommence, int pNumeroPli)
     {
         //On retient le numéro du joueur qui démarre pour compter les points
@@ -170,10 +221,10 @@ public class Manche {
             {
                 if(pJoueurQuiCommence==ji.getNumeroJoueur())
                 {
-                    tourDeJeu[i] = this.choisirUneCarte(ji,i,tourDeJeu);
+                    tourDeJeu[i] = this.choisirUneCarteHumain(ji,i,tourDeJeu);
                     while(tourDeJeu[i]==null) // Si les règles ne passent pas
                     {
-                        tourDeJeu[i] = this.choisirUneCarte(ji,i,tourDeJeu);
+                        tourDeJeu[i] = this.choisirUneCarteHumain(ji,i,tourDeJeu);
                     }
                     System.out.println(ji.getNomJoueur()+" joue son "+
                            tourDeJeu[i].getFigure()+" de "
@@ -192,7 +243,19 @@ public class Manche {
         return pJoueurQuiCommence;
     }
     
-    private Carte choisirUneCarte(Joueur pJoueur, int tourDuJoueur, Carte[] pTapis)
+    /**
+     * Cette méthode est une interface entre le joueur humain et l'objet Joueur.
+     * On lui entre en paramètres l'objet Joueur dont c'est le tour, le numéro
+     * du tour qu'il joue lors du pli, et les cartes qui ont déjà été jetées
+     * lors du pli
+     * La méthode retourne la Carte qui a été choisie par le joueur,
+     * si celle-ci a été validée par la méthode verificationReglesCartes
+     * @param pJoueur objet Joueur dont c'est le tour pour le pli actuel
+     * @param tourDuJoueur rang du joueur pour ce pli (entre 0 et 3)
+     * @param pTapis Cartes ayant été jetées lors de ce pli (tableau de 4 Carte)
+     * @return Carte choisie par le joueur humain
+     */
+    private Carte choisirUneCarteHumain(Joueur pJoueur, int tourDuJoueur, Carte[] pTapis)
     {
         switch (tourDuJoueur)
         {
@@ -273,6 +336,14 @@ public class Manche {
         }
     }
     
+    /**
+     * La fonction vérifie que la Carte jouée par le joueur respecte les règles
+     * du jeu. Attention, la règle monter à l'atout n'en fait pas partie.
+     * @param pCarteValider La carte à vérifier
+     * @param pJoueur Le Joueur qui a joué la Carte
+     * @param pTapis Les cartes déjà jouées lors du pli
+     * @return Vrai ou Faux si le jet de la Carte respecte les règles du jeu
+     */
     private boolean verificationReglesCarte(Carte pCarteValider, Joueur pJoueur, Carte[] pTapis)
     {
         boolean resultat = true;
@@ -312,6 +383,19 @@ public class Manche {
         return resultat;
     }
     
+    /**
+     * La méthode arbitrage cherche le joueur qui a remporté le pli dans le 
+     * tableau pTourDeJeu, en fonction de la valeur des cartes en atout et
+     * en non-atout. On lui passe en paramètre les 4 cartes du pli, le joueur
+     * qui a commencé le pli, et le numéro du pli
+     * Cette méthode appelle les méthodes calculPointsSurTable et
+     * attributionPoints qui permettent d'attribuer ses points au joueur qui
+     * les a gagnés durant le pli
+     * @param pTourDeJeu Les 4 cartes jouées pendant le pli
+     * @param pMemoireJoueurQuiCommence Le joueur ayant commencé
+     * @param pNumeroPli Le numéro du pli (compris entre 0 et 7)
+     * @return Le rang du joueur qui a gagné
+     */
     private int arbitrage(Carte[] pTourDeJeu, int pMemoireJoueurQuiCommence, int pNumeroPli)
     {
         int i = 0;
@@ -380,6 +464,13 @@ public class Manche {
         return rangGagnant;
     }
     
+    /**
+     * Cette méthode permet d'attribuer des points à un Joueur.
+     * On lui passe en paramètre le rang dujoueur concerné et le nombre de 
+     * points que l'on souhaite lui ajouter
+     * @param pRangGagnant Le rang du joueur
+     * @param pNbPoints Le nombre de points qu'on lui attribue
+     */
     private void attributionPoints(int pRangGagnant, int pNbPoints)
     {
         Joueur[] listeJoueurs = {j1,j2,j3,j4};
@@ -394,6 +485,12 @@ public class Manche {
         }
     }
     
+    /**
+     * La méthode calculPointsSurTable calcule la somme des valeurs des
+     * cartes lors d'un pli
+     * @param pJeu Les 4 Cartes du pli
+     * @return Le nombre de points du pli
+     */
     private int calculPointsSurTable(Carte[] pJeu)
     {
         int totalPoints = 0;
@@ -412,7 +509,7 @@ public class Manche {
     }
     
     /**
-     *
+     * Permet d'afficher les scores des deux équipes
      */
     public void afficherScoreEquipes()
     {
@@ -440,6 +537,14 @@ public class Manche {
         }
     }
     
+    /**
+     * La méthode verifEtMajScoresEquipes vérifie si le joueur qui a pris
+     * la main lors de la manche a validé son contrat. Sinon, elle change
+     * l'attribution des scores aux deux équipes (162-0). Elle change aussi
+     * le score obtenu si il y a eu Kapo (0 points à une équipe -> 252-0)
+     * Si le contrat est validé, les deux équipes récupèrent leurs points
+     * @param pJoueurQuiPrend Le joueur qui a pris la main et qui doit faire 82
+     */
     private void verifEtMajScoresEquipes(int pJoueurQuiPrend)
     {
         int score1 = 0;
@@ -546,6 +651,9 @@ public class Manche {
         scoreEquipe2 += score2;
     }
     
+    /**
+     * Permet, en fin de manche, de réinitialiser les scores des joueurs
+     */
     private void mettreAZeroScoresJoueurs()
     {
         j1.changerScore(-j1.getScore());
@@ -554,6 +662,12 @@ public class Manche {
         j4.changerScore(-j4.getScore());
     }
     
+    /**
+     * La fonction n'a pas été faite
+     * Elle doit permettre la vérification des annonces en début de partie
+     * @param pJoueur joueur à vérifier
+     * @return Nombre de points en annonce
+     */
     private int checkAnnonce(Joueur pJoueur)
     {
         //On verra à la fin, on se fait pas chier
@@ -561,19 +675,19 @@ public class Manche {
     }
     
     /**
-     *
-     * @return
+     * Méthode accesseur du score de l'équipe 1
+     * @return Score équipe 1
      */
-    public int donnerScoreEquipe1()
+    public int getScoreEquipe1()
     {
         return scoreEquipe1;
     }
     
     /**
-     *
-     * @return
+     * Méthode accesseur du score de l'équipe 2
+     * @return Score équipe 2
      */
-    public int donnerScoreEquipe2()
+    public int getScoreEquipe2()
     {
         return scoreEquipe2;
     }

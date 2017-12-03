@@ -1,7 +1,8 @@
 package partieBelotte;
 
 /**
- * Here is a JavaDoc comment in plain HTML for a class 
+ * L'objet Couleur représente la couleur (coeur carreau, trèfle ou pique)
+ * que peut avoir une carte
  * @author pierre
  * @author david
  * @version 1.0
