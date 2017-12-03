@@ -113,12 +113,12 @@ public class Patron extends Client {
         /*Fonction permettant d'exclure un client qui serait trop énervé, 
         exception si le client est deja viré*/
         try{
-            if(client.est_interieur == 1){
+            if(client.est_interieur == 0){
                 throw new Exception("Erreur: Le client est deja viré");
             }
             else{
                 this.parler("Tu es viré de ce bar", client);
-                client.est_interieur=1;
+                client.est_interieur=0;
             }
         }
         catch (Exception e){
@@ -135,7 +135,7 @@ public class Patron extends Client {
         /*Fonction permettant d'empecher un client d'être servi, exception s'il 
         ne peut deja plus boire*/
         try{
-            if(client.est_bourre==1){
+            if(client.est_bourre== 1){
                 throw new Exception("Erreur: Le client ne peut déja plus etre "
                         + "servi");
             }

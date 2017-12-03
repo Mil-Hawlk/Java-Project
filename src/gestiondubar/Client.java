@@ -195,8 +195,8 @@ public class Client extends Humain implements Tournee_generale {
                     );
                 case(1):
                     if(this.porte_monnaie<boisson.prix_vente){
-                            throw new Exception ("Vous n'avez pas assez "
-                                    + "d'argent");
+                            throw new Exception ("Erreur :Vous n'avez pas "
+                                    + "assez d'argent");
                     }
                     else{
                         if(boisson.nombre<1){
