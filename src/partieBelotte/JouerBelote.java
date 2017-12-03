@@ -97,7 +97,7 @@ public class JouerBelote {
     private void ecrireManche(Manche pManche, Joueur pJ1, Joueur pJ2, Joueur pJ3, Joueur pJ4)//Passer en private
     {
         //Etape 1 : Création du fichier
-        File monFichier = new File("./src/partieBelotte/histoireParties.txt");
+        File monFichier = new File("./histoireParties.txt");
         try{
             if(monFichier.exists()==false)
             {
@@ -147,7 +147,7 @@ public class JouerBelote {
      */
     public void afficherDerniereMancheJouee()
     {
-        File monFichier = new File("./src/partieBelotte/histoireParties.txt");
+        File monFichier = new File("./histoireParties.txt");
         FileReader fichier;
         char[] recup = new char[8];
         String recupString = "\n";
