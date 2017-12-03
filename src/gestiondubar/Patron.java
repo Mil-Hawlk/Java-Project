@@ -109,7 +109,7 @@ public class Patron extends Client {
      * @param client 
      * @exception Exception
      */
-    public void exclure(Client client){
+    public void exclure(Client client, Bar mon_Bar){
         /*Fonction permettant d'exclure un client qui serait trop énervé, 
         exception si le client est deja viré*/
         try{
@@ -119,6 +119,7 @@ public class Patron extends Client {
             else{
                 this.parler("Tu es viré de ce bar", client);
                 client.est_interieur=0;
+                client.quitter_Bar(mon_Bar);
             }
         }
         catch (Exception e){

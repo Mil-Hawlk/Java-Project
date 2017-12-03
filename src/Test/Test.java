@@ -119,7 +119,7 @@ public class Test {
         mon_Bar.client_present();
         System.out.println("**************************************************"
                 + "David se fait virer ensuite ******************************");
-        philippine.exclure(david);
+        philippine.exclure(david,mon_Bar);
         david.offrir_Verre(gatoune, cuvee,anthony); /*Erreur puisque David n'est
         plus dans le bar*/
         System.out.println("**************************************************"
@@ -131,6 +131,7 @@ public class Test {
         System.out.println("***************************************************"
         + "Lancement de la belote *******************************************");
         kilian.entrer_bar(mon_Bar);
+        david.entrer_bar(mon_Bar);
         anais.entrer_bar(mon_Bar);
         mon_Bar.client_present();
         kilian.s_attabler(bleu);
